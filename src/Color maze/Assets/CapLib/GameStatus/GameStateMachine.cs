@@ -2,7 +2,7 @@
 
 namespace CapLib.GameStatus
 {
-	public sealed class GameStateMachine : IGameStateMachine
+	public class GameStateMachine : IGameStateMachine
 	{
 		IState _activeState;
 		readonly TypeLocator<IState> _states = new();
