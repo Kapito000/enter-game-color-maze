@@ -2,12 +2,9 @@
 
 namespace Infrastructure.GameStatus.State
 {
-	public sealed class Loop : BaseState, IState
+	public sealed class Loop : IState
 	{
-		public Loop(IGameStateMachine gameStateMachine) :
-			base(gameStateMachine)
-		{ }
-		
+	
 		public void Enter()
 		{ }
 

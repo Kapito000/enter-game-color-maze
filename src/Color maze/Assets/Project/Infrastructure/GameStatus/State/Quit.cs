@@ -2,11 +2,8 @@
 
 namespace Infrastructure.GameStatus.State
 {
-	public sealed class ExitGame : BaseState, IState
+	public sealed class Quit : IState
 	{
-		public ExitGame(IGameStateMachine gameStateMachine) : base(gameStateMachine)
-		{ }
-
 		public void Enter()
 		{ }
 

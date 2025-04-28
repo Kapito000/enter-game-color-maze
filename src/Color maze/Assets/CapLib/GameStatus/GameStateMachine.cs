@@ -1,4 +1,5 @@
 ﻿using CapLib.Common;
+using Zenject;
 
 namespace CapLib.GameStatus
 {
@@ -7,9 +8,10 @@ namespace CapLib.GameStatus
 		IState _activeState;
 		readonly TypeLocator<IState> _states = new();
 
-		public GameStateMachine(IState[] states)
+		[Inject]
+		void Construct(IState[] states)
 		{
-			_states.Register(states);	
+			_states.Register(states);
 		}
 
 		public bool TryEnter<TState>() where TState : class, IState
@@ -23,7 +25,7 @@ namespace CapLib.GameStatus
 			return true;
 		}
 
-		public bool TryGetState<TState>(out TState state)
+		bool TryGetState<TState>(out TState state)
 			where TState : class, IState
 		{
 			var result = _states.TryGet<TState>(out var obj);
