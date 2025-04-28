@@ -1,6 +1,7 @@
 using CapLib.Common;
 using CapLib.GameStatus;
 using CapLib.SceneLoad;
+using Game.Input;
 using Infrastructure.Configuration;
 using Infrastructure.GameStatus.State;
 using UnityEngine;
@@ -16,9 +17,18 @@ namespace Infrastructure.Installer
 		public override void InstallBindings()
 		{
 			BindSceneLoader();
+			BindInputService();
 			BindCoroutineRunner();
 			BindGameSceneMachine();
 			BindGameConfiguration();
+		}
+
+		void BindInputService()
+		{
+			Container.Bind<Game.Input.Actions>().AsSingle();
+			Container.Bind<IInputService>().To<InputService>().AsSingle();
+			Container.Bind<IMovementInput>().To<MovementInput>().AsSingle();
+			
 		}
 
 		void BindCoroutineRunner()
