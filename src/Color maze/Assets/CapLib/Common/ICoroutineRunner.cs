@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CapLib.Common
 {
-	public interface ICoroutineRunner
+	public interface ICoroutineRunner : IService
 	{
 		Coroutine StartCoroutine(IEnumerator coroutine);
 	}
