@@ -206,7 +206,7 @@ namespace Game.Input
                 {
                     ""name"": ""right"",
                     ""id"": ""7c207cd0-d028-44ca-8da9-45a315cadb52"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

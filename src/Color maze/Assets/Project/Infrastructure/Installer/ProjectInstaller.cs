@@ -13,22 +13,21 @@ namespace Infrastructure.Installer
 	public sealed class ProjectInstaller : MonoInstaller, ICoroutineRunner
 	{
 		[SerializeField] GameConfig gameConfig;
-		
+
 		public override void InstallBindings()
 		{
 			BindSceneLoader();
-			BindInputService();
+			BindInputServices();
 			BindCoroutineRunner();
 			BindGameSceneMachine();
 			BindGameConfiguration();
 		}
 
-		void BindInputService()
+		void BindInputServices()
 		{
 			Container.Bind<Game.Input.Actions>().AsSingle();
 			Container.Bind<IInputService>().To<InputService>().AsSingle();
 			Container.Bind<IMovementInput>().To<MovementInput>().AsSingle();
-			
 		}
 
 		void BindCoroutineRunner()
@@ -39,7 +38,7 @@ namespace Infrastructure.Installer
 		void BindGameConfiguration()
 		{
 			Assert.IsNotNull(gameConfig);
-			
+
 			Container.Bind<IGameConfig>().FromInstance(gameConfig).AsSingle();
 		}
 
