@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Feature.PlayerHero
@@ -6,122 +8,65 @@ namespace Feature.PlayerHero
 	[RequireComponent(typeof(CharacterController))]
 	public class HumanoidMovement : MonoBehaviour, IHumanoidMovement
 	{
-		[SerializeField] float _speed;
-		[SerializeField] float _accelerationRate;
+		[SerializeField] float _speed = 3f;
 
-		[Tooltip("How fast the character turns to face movement direction")]
-		[Range(0.0f, 0.3f)]
-		[SerializeField]
-		float _rotationSmoothTime = 0.12f;
+		[SerializeField] float _acceleration = 10f;
+		[SerializeField] float _rotationSpeed = 15f;
 
-		[Tooltip("Acceleration and deceleration")]
-		public float SpeedChangeRate = 10.0f;
-
-		public AudioClip LandingAudioClip;
-		public AudioClip[] FootstepAudioClips;
-		[Range(0, 1)] public float FootstepAudioVolume = 0.5f;
-
-		[Header("Player Grounded")]
-		[Tooltip(
-			"If the character is grounded or not. " +
-			"Not part of the CharacterController built in grounded check")]
-		public bool Grounded = true;
-
-		[Tooltip("Useful for rough ground")] public float GroundedOffset = -0.14f;
-
-		[Tooltip(
-			"The radius of the grounded check. " +
-			"Should match the radius of the CharacterController")]
-		public float GroundedRadius = 0.28f;
-
-		float _rotationVelocity;
-		float _verticalVelocity;
-
-		float _jumpTimeoutDelta;
-		float _fallTimeoutDelta;
-		float _targetRotation;
-
-		CharacterController _controller;
+		float _currentSpeed;
+		Vector3 _currentVelocity;
+		CharacterController _characterController;
 
 		void Awake()
 		{
-			_controller = GetComponent<CharacterController>();
+			_characterController = GetComponent<CharacterController>();
+			Assert.IsNotNull(_characterController);
 		}
 
-		public void Move(Vector2 normVelocity)
+		void Update()
 		{
-			float sqrHorizontalNormSpeed = SqrHorizontalNormSpeed();
+			ApplyGravity();
+			MoveCharacter();
+		}
 
-			float resultSpeed = 0;
+		public void Move(Vector2 velocity)
+		{
+			velocity = NormalizeVelocity(velocity);
 
-			_controller.
-			
-			var targetSpeed = _speed * sqrHorizontalNormSpeed;
-			resultSpeed = Mathf.Lerp(sqrHorizontalNormSpeed, targetSpeed,
-				Time.deltaTime * _accelerationRate);
+			float targetSpeed = Mathf.Lerp(0f, _speed, velocity.magnitude);
+			_currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed,
+				_acceleration * Time.deltaTime);
 
-			if (normVelocity != Vector2.zero)
+			Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.y).normalized;
+
+			Vector3 horizontalVelocity = moveDirection * _currentSpeed;
+			_currentVelocity.x = horizontalVelocity.x;
+			_currentVelocity.z = horizontalVelocity.z;
+
+			if (moveDirection != Vector3.zero)
 			{
-				var targetRot = Mathf
-					.Atan2(normVelocity.x, normVelocity.y) * Mathf.Rad2Deg;
-
-				_targetRotation = Mathf.SmoothDampAngle(transform.eulerAngles.y,
-					targetRot, ref _rotationVelocity, _rotationSmoothTime);
-
-				transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
-			}
-
-			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) *
-			                          Vector3.forward;
-
-			var horizontal = targetDirection.normalized * (_speed * Time.deltaTime);
-
-			var verticalVelocity = new Vector3(0.0f, _verticalVelocity, 0.0f);
-			var vertical = verticalVelocity * Time.deltaTime;
-
-			_controller.Move(horizontal + vertical);
-		}
-
-		float SqrHorizontalNormSpeed() =>
-			new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z)
-				.sqrMagnitude;
-
-		void OnDrawGizmosSelected()
-		{
-			Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-			Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-			if (Grounded) Gizmos.color = transparentGreen;
-			else Gizmos.color = transparentRed;
-
-			// when selected, draw a gizmo in the position of,
-			// and matching radius of, the grounded collider
-			Gizmos.DrawSphere(
-				new Vector3(transform.position.x, transform.position.y - GroundedOffset,
-					transform.position.z),
-				GroundedRadius);
-		}
-
-		void OnFootstep(AnimationEvent animationEvent)
-		{
-			if (animationEvent.animatorClipInfo.weight > 0.5f)
-			{
-				if (FootstepAudioClips.Length > 0)
-				{
-					var index = Random.Range(0, FootstepAudioClips.Length);
-					AudioSource.PlayClipAtPoint(FootstepAudioClips[index],
-						transform.TransformPoint(_controller.center), FootstepAudioVolume);
-				}
+				Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+				transform.rotation = Quaternion.Slerp(
+					transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 			}
 		}
 
-		void OnLand(AnimationEvent animationEvent)
+		void ApplyGravity()
 		{
-			if (animationEvent.animatorClipInfo.weight > 0.5f)
-			{
-				AudioSource.PlayClipAtPoint(LandingAudioClip,
-					transform.TransformPoint(_controller.center), FootstepAudioVolume);
-			}
+			if (_characterController.isGrounded)
+				_currentVelocity.y = -0.5f;
+			else
+				_currentVelocity.y += Physics.gravity.y * Time.deltaTime;
 		}
+
+		void MoveCharacter()
+		{
+			_characterController.Move(_currentVelocity * Time.deltaTime);
+		}
+
+		Vector2 NormalizeVelocity(Vector2 velocity) =>
+			velocity.sqrMagnitude > 1f
+				? velocity.normalized
+				: velocity;
 	}
 }
