@@ -32,23 +32,39 @@ namespace Feature.PlayerHero
 		public void Move(Vector2 velocity)
 		{
 			velocity = NormalizeVelocity(velocity);
+			CalculateCurrentSpeed(velocity);
+			Vector3 moveDirection = MoveDirection(velocity);
+			CalculateCurrentVelocity(moveDirection);
+			Rotate(moveDirection);
+		}
 
-			float targetSpeed = Mathf.Lerp(0f, _speed, velocity.magnitude);
-			_currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed,
-				_acceleration * Time.deltaTime);
+		void Rotate(Vector3 moveDirection)
+		{
+			if (moveDirection == Vector3.zero)
+				return;
 
-			Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.y).normalized;
+			Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+			transform.rotation = Quaternion.Slerp(
+				transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+		}
 
+		static Vector3 MoveDirection(Vector2 velocity)
+		{
+			return new Vector3(velocity.x, 0, velocity.y).normalized;
+		}
+
+		void CalculateCurrentVelocity(Vector3 moveDirection)
+		{
 			Vector3 horizontalVelocity = moveDirection * _currentSpeed;
 			_currentVelocity.x = horizontalVelocity.x;
 			_currentVelocity.z = horizontalVelocity.z;
+		}
 
-			if (moveDirection != Vector3.zero)
-			{
-				Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-				transform.rotation = Quaternion.Slerp(
-					transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-			}
+		void CalculateCurrentSpeed(Vector2 velocity)
+		{
+			float targetSpeed = Mathf.Lerp(0f, _speed, velocity.magnitude);
+			_currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed,
+				_acceleration * Time.deltaTime);
 		}
 
 		void ApplyGravity()
