@@ -7,12 +7,12 @@ namespace Game.Input
 	{
 		readonly Actions _actions;
 
-		public Vector2 Direction { get; private set; }
+		public Vector2 NormVelocity { get; private set; }
 
 		public MovementInput(Actions actions)
 		{
 			_actions = actions;
-			_actions.Movement.Direcion.performed += OnMovementDirectionPerformed;
+			_actions.Movement.Velocity.performed += OnMovementDirectionPerformed;
 		}
 
 		public void Enable()
@@ -26,6 +26,6 @@ namespace Game.Input
 		}
 
 		void OnMovementDirectionPerformed(InputAction.CallbackContext context) =>
-			Direction = context.ReadValue<Vector2>();
+			NormVelocity = context.ReadValue<Vector2>();
 	}
 }

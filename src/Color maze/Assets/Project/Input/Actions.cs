@@ -94,7 +94,7 @@ namespace Game.Input
             ""id"": ""0aee1cde-26dd-4c04-92d7-a1c7ed05b7ce"",
             ""actions"": [
                 {
-                    ""name"": ""Direcion"",
+                    ""name"": ""Velocity"",
                     ""type"": ""PassThrough"",
                     ""id"": ""1d1a7f5b-67d7-4813-bef9-402a8d329e4d"",
                     ""expectedControlType"": ""Vector2"",
@@ -107,11 +107,11 @@ namespace Game.Input
                 {
                     ""name"": ""Arrows"",
                     ""id"": ""092108db-7b5e-4718-93f5-91eaac35f9d3"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -122,7 +122,7 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -133,7 +133,7 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -144,7 +144,7 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -155,18 +155,18 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""WASD"",
                     ""id"": ""9a8ddb55-1b81-4b58-a3b0-b56349b64aa0"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -177,7 +177,7 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -188,7 +188,7 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -199,7 +199,7 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -210,7 +210,7 @@ namespace Game.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Direcion"",
+                    ""action"": ""Velocity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -233,7 +233,7 @@ namespace Game.Input
 }");
             // Movement
             m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-            m_Movement_Direcion = m_Movement.FindAction("Direcion", throwIfNotFound: true);
+            m_Movement_Velocity = m_Movement.FindAction("Velocity", throwIfNotFound: true);
         }
 
         ~@Actions()
@@ -314,7 +314,7 @@ namespace Game.Input
         // Movement
         private readonly InputActionMap m_Movement;
         private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-        private readonly InputAction m_Movement_Direcion;
+        private readonly InputAction m_Movement_Velocity;
         /// <summary>
         /// Provides access to input actions defined in input action map "Movement".
         /// </summary>
@@ -327,9 +327,9 @@ namespace Game.Input
             /// </summary>
             public MovementActions(@Actions wrapper) { m_Wrapper = wrapper; }
             /// <summary>
-            /// Provides access to the underlying input action "Movement/Direcion".
+            /// Provides access to the underlying input action "Movement/Velocity".
             /// </summary>
-            public InputAction @Direcion => m_Wrapper.m_Movement_Direcion;
+            public InputAction @Velocity => m_Wrapper.m_Movement_Velocity;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -356,9 +356,9 @@ namespace Game.Input
             {
                 if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
-                @Direcion.started += instance.OnDirecion;
-                @Direcion.performed += instance.OnDirecion;
-                @Direcion.canceled += instance.OnDirecion;
+                @Velocity.started += instance.OnVelocity;
+                @Velocity.performed += instance.OnVelocity;
+                @Velocity.canceled += instance.OnVelocity;
             }
 
             /// <summary>
@@ -370,9 +370,9 @@ namespace Game.Input
             /// <seealso cref="MovementActions" />
             private void UnregisterCallbacks(IMovementActions instance)
             {
-                @Direcion.started -= instance.OnDirecion;
-                @Direcion.performed -= instance.OnDirecion;
-                @Direcion.canceled -= instance.OnDirecion;
+                @Velocity.started -= instance.OnVelocity;
+                @Velocity.performed -= instance.OnVelocity;
+                @Velocity.canceled -= instance.OnVelocity;
             }
 
             /// <summary>
@@ -427,12 +427,12 @@ namespace Game.Input
         public interface IMovementActions
         {
             /// <summary>
-            /// Method invoked when associated input action "Direcion" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "Velocity" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnDirecion(InputAction.CallbackContext context);
+            void OnVelocity(InputAction.CallbackContext context);
         }
     }
 }

@@ -25,8 +25,8 @@ namespace Feature.PlayerHero
 
 		void Update()
 		{
-			var direction = _input.Direction;
-			_movement.Move(direction);
+			var inputVelocity = _input.NormVelocity;
+			_movement.Move(inputVelocity);
 		}
 	}
 }

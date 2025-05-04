@@ -4,6 +4,6 @@ namespace Feature.PlayerHero
 {
 	public interface IHumanoidMovement
 	{
-		void Move(Vector2 direction);
+		void Move(Vector2 normVelocity);
 	}
 }

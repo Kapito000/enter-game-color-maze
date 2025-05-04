@@ -37,7 +37,6 @@ namespace Feature.PlayerHero
 		float _rotationVelocity;
 		float _verticalVelocity;
 
-		// timeout deltatime
 		float _jumpTimeoutDelta;
 		float _fallTimeoutDelta;
 		float _targetRotation;
@@ -49,27 +48,22 @@ namespace Feature.PlayerHero
 			_controller = GetComponent<CharacterController>();
 		}
 
-		public void Move(Vector2 direction)
+		public void Move(Vector2 normVelocity)
 		{
-			float currentHorizontalSpeed =
-				new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z)
-					.magnitude;
+			float sqrHorizontalNormSpeed = SqrHorizontalNormSpeed();
 
 			float resultSpeed = 0;
-			float speedOffset = .1f;
 
-			if (currentHorizontalSpeed < _speed - speedOffset ||
-			    currentHorizontalSpeed > _speed + speedOffset)
-			{
-				resultSpeed = Mathf.Lerp(currentHorizontalSpeed, _speed,
-					Time.deltaTime * _accelerationRate);
-				resultSpeed = Mathf.Round(resultSpeed * 1000f) / 1000f;
-			}
+			_controller.
+			
+			var targetSpeed = _speed * sqrHorizontalNormSpeed;
+			resultSpeed = Mathf.Lerp(sqrHorizontalNormSpeed, targetSpeed,
+				Time.deltaTime * _accelerationRate);
 
-			if (direction != Vector2.zero)
+			if (normVelocity != Vector2.zero)
 			{
 				var targetRot = Mathf
-					.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+					.Atan2(normVelocity.x, normVelocity.y) * Mathf.Rad2Deg;
 
 				_targetRotation = Mathf.SmoothDampAngle(transform.eulerAngles.y,
 					targetRot, ref _rotationVelocity, _rotationSmoothTime);
@@ -80,11 +74,17 @@ namespace Feature.PlayerHero
 			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) *
 			                          Vector3.forward;
 
-			_controller
-				.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-				      new Vector3(0.0f, _verticalVelocity, 0.0f) *
-				      Time.deltaTime);
+			var horizontal = targetDirection.normalized * (_speed * Time.deltaTime);
+
+			var verticalVelocity = new Vector3(0.0f, _verticalVelocity, 0.0f);
+			var vertical = verticalVelocity * Time.deltaTime;
+
+			_controller.Move(horizontal + vertical);
 		}
+
+		float SqrHorizontalNormSpeed() =>
+			new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z)
+				.sqrMagnitude;
 
 		void OnDrawGizmosSelected()
 		{

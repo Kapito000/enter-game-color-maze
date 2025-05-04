@@ -4,6 +4,6 @@ namespace Game.Input
 {
 	public interface IMovementInput : IInputService
 	{
-		Vector2 Direction { get; }
+		Vector2 NormVelocity { get; }
 	}
 }
