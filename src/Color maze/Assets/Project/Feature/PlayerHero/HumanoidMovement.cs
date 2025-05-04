@@ -9,7 +9,6 @@ namespace Feature.PlayerHero
 	public class HumanoidMovement : MonoBehaviour, IHumanoidMovement
 	{
 		[SerializeField] float _speed = 3f;
-
 		[SerializeField] float _acceleration = 10f;
 		[SerializeField] float _rotationSpeed = 15f;
 
