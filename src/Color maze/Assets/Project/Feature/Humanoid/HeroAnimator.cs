@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Feature.PlayerHero
+namespace Feature.Humanoid
 {
 	[RequireComponent(typeof(Animator))]
 	public sealed class HeroAnimator : MonoBehaviour

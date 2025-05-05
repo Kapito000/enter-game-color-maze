@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Feature.PlayerHero
+namespace Feature.Humanoid
 {
 	public interface IHumanoidMovement
 	{

@@ -1,4 +1,4 @@
-﻿namespace Feature.PlayerHero
+﻿namespace Feature.Humanoid
 {
 	public interface IHumanoidMovementController
 	{ }

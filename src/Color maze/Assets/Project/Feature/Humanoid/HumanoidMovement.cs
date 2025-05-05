@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Feature.PlayerHero
+namespace Feature.Humanoid
 {
 	[RequireComponent(typeof(CharacterController))]
 	public class HumanoidMovement : MonoBehaviour, IHumanoidMovement

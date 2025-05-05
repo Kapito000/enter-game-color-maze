@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Feature.PlayerHero
+namespace Feature.Humanoid
 {
 	[RequireComponent(typeof(IHumanoidMovement))]
 	public sealed class HumanoidMovementController : MonoBehaviour,
