@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 namespace Feature.PlayerHero
 {
@@ -71,7 +69,7 @@ namespace Feature.PlayerHero
 			if (_characterController.isGrounded)
 				_currentVelocity.y = -0.5f;
 			else
-				_currentVelocity.y += Physics.gravity.y * Time.deltaTime;
+				_currentVelocity.y += UnityEngine.Physics.gravity.y * Time.deltaTime;
 		}
 
 		void MoveCharacter()
