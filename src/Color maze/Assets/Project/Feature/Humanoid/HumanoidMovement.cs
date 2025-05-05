@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UniRx;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Feature.Humanoid
@@ -9,10 +11,13 @@ namespace Feature.Humanoid
 		[SerializeField] float _speed = 3f;
 		[SerializeField] float _acceleration = 10f;
 		[SerializeField] float _rotationSpeed = 15f;
+		[ReadOnly]
+		[SerializeField] ReactiveProperty<float> _currentSpeed;
 
-		float _currentSpeed;
 		Vector3 _currentVelocity;
 		CharacterController _characterController;
+
+		public IReadOnlyReactiveProperty<float> CurrentSpeed => _currentSpeed;
 
 		void Awake()
 		{
@@ -52,7 +57,7 @@ namespace Feature.Humanoid
 
 		void CalculateCurrentVelocity(Vector3 moveDirection)
 		{
-			Vector3 horizontalVelocity = moveDirection * _currentSpeed;
+			Vector3 horizontalVelocity = moveDirection * _currentSpeed.Value;
 			_currentVelocity.x = horizontalVelocity.x;
 			_currentVelocity.z = horizontalVelocity.z;
 		}
@@ -60,7 +65,7 @@ namespace Feature.Humanoid
 		void CalculateCurrentSpeed(Vector2 velocity)
 		{
 			float targetSpeed = Mathf.Lerp(0f, _speed, velocity.magnitude);
-			_currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed,
+			_currentSpeed.Value = Mathf.Lerp(_currentSpeed.Value, targetSpeed,
 				_acceleration * Time.deltaTime);
 		}
 

@@ -1,5 +1,6 @@
 ﻿using Game.Input;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Zenject;
 
 namespace Feature.Humanoid
@@ -21,6 +22,7 @@ namespace Feature.Humanoid
 		void Awake()
 		{
 			_movement = GetComponent<IHumanoidMovement>();
+			Assert.IsNotNull(_movement);
 		}
 
 		void Update()
