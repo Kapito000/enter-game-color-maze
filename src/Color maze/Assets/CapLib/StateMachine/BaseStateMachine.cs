@@ -2,10 +2,18 @@
 {
 	public abstract class
 		BaseStateMachine<TStateKey, TState> : IStateMachine<TStateKey, TState>
-		where TState : IState
+		where TState : class, IState
 	{
-		TState _currentState;
-		IStatesContainer<TStateKey, TState> _states;
+		IStateMediator<TState> _currentState;
+		
+		readonly IMediatorContainer<TStateKey, TState> _states;
+
+		protected TState CurrentState => _currentState.State;
+
+		public BaseStateMachine(IMediatorContainer<TStateKey, TState> container)
+		{
+			_states = container;
+		}
 
 		public bool TryAddState(TStateKey key, TState state) =>
 			_states.TryAdd(key, state);
@@ -19,12 +27,6 @@
 			_currentState = nextState;
 			_currentState.Enter();
 			return true;
-		}
-
-		protected void SetStatesContainer(
-			IStatesContainer<TStateKey, TState> statesContainer)
-		{
-			_states = statesContainer;
 		}
 	}
 }

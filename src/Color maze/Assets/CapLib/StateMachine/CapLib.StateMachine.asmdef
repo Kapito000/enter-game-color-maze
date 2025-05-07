@@ -1,7 +1,7 @@
 {
     "name": "StateMachine",
     "rootNamespace": "CapLib.StateMachine",
-    "references": [],
+    "references": ["GUID:9e2ac20b3dd89ce4d8258e40e42bb7c6"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
