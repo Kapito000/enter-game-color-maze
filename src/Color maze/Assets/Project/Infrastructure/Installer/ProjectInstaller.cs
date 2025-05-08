@@ -1,5 +1,6 @@
 using CapLib.Common;
 using CapLib.GameStatus;
+using CapLib.Id;
 using CapLib.SceneLoad;
 using Game.Input;
 using Infrastructure.Configuration;
@@ -16,11 +17,24 @@ namespace Infrastructure.Installer
 
 		public override void InstallBindings()
 		{
+			BindIdFactory();
 			BindSceneLoader();
 			BindInputServices();
 			BindCoroutineRunner();
 			BindGameSceneMachine();
 			BindGameConfiguration();
+		}
+
+		void BindIdFactory()
+		{
+			Container.Bind<IIdFactory>().To<IntIdFactory>().AsSingle();
+			Container.Bind<IId>().FromMethod(CreateNewId).AsTransient();
+		}
+
+		IId CreateNewId(InjectContext context)
+		{
+			var idFactory = Container.Resolve<IIdFactory>();
+			return idFactory.CreateId();
 		}
 
 		void BindInputServices()
