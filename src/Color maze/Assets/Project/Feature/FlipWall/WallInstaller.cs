@@ -3,6 +3,7 @@ using CapLib.StateMachine;
 using Feature.FlipWall.StateMachine;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Feature.FlipWall
@@ -10,6 +11,7 @@ namespace Feature.FlipWall
 	public sealed class WallInstaller : MonoInstaller
 	{
 		[SerializeField] Wall _wall;
+		[SerializeField] Collider _blockCollider;
 		[Header("Only two triggers.")]
 		[SerializeField] WallTrigger[] _wallTriggers;
 
@@ -17,7 +19,13 @@ namespace Feature.FlipWall
 		{
 			BindWall();
 			BindWallTriggers();
+			BindBlockCollider();
 			BindWallStateMachine();
+		}
+
+		void BindBlockCollider()
+		{
+			Container.BindInstance(_blockCollider).AsSingle();
 		}
 
 		void BindWallStateMachine()

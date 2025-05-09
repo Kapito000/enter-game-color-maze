@@ -1,9 +1,12 @@
 ﻿using CapLib.StateMachine;
+using Zenject;
 
 namespace Feature.FlipWall.StateMachine.States
 {
 	public sealed class AtExitState : WallState, IWallState
 	{
+		[Inject] IFlipWallSystem _flipWallSystem;
+		
 		public State State => State.AtExit;
 
 		public void ActorEnterProcess(IWallTransitActor actor, IWallTrigger trigger)
@@ -21,7 +24,7 @@ namespace Feature.FlipWall.StateMachine.States
 			if (trigger == Data.ContactTriggers[1])
 			{
 				StateMachine.Enter(State.Outside);
-				// Wall passed.
+				_flipWallSystem.Flip();
 			}
 		}
 	}

@@ -43,7 +43,7 @@ namespace CapLib.SceneBootstrapper
 				case PlayModeStateChange.ExitingEditMode:
 					PreviousScene = EditorSceneManager.GetActiveScene().path;
 
-					if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo() &&
+					if (/*EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo() &&*/
 					    IsSceneInBuildSettings(BootstrapScene))
 					{
 						EditorSceneManager.OpenScene(BootstrapScene);

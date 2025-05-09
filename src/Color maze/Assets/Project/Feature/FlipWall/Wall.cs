@@ -9,10 +9,14 @@ using Zenject;
 
 namespace Feature.FlipWall
 {
-	public sealed class Wall : MonoBehaviour, IWallData
+	public sealed class Wall : MonoBehaviour, IWall, IWallData
 	{
+		[SerializeField] WallKey _key;
+		
 		[Inject] IId _id;
+		[Inject] Collider _blockCollider;
 		[Inject] IWallTrigger[] _wallTriggers;
+		[Inject] IFlipWallSystem _flipWallSystem;
 		[Inject] IWallStateMachine _stateMachine;
 		[Inject] IInstantiateService _instantiator;
 
@@ -31,7 +35,16 @@ namespace Feature.FlipWall
 			InitContactTriggersArray();
 			InitStateMachine();
 			TriggersEventProcess();
+			RegistryInSystem();
 		}
+
+		public void Block(bool enable)
+		{
+			_blockCollider.enabled = enable;
+		}
+
+		void InitContactTriggersArray() =>
+			ContactTriggers = new IWallTrigger[_wallTriggers.Length];
 
 		void InitStateMachine()
 		{
@@ -58,8 +71,10 @@ namespace Feature.FlipWall
 			}
 		}
 
-		void InitContactTriggersArray() =>
-			ContactTriggers = new IWallTrigger[_wallTriggers.Length];
+		void RegistryInSystem()
+		{
+			_flipWallSystem.Registry(this, _key);
+		}
 
 		T CreateState<T>() where T : IWallState =>
 			_instantiator.Instantiate<T>();
