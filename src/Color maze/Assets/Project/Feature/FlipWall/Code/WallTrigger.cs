@@ -29,7 +29,7 @@ namespace Feature.FlipWall
 
 			_actorExited.OnNext(actor);
 		}
-		
+
 		public void Associate(IId id)
 		{
 			WallId = id;
@@ -38,12 +38,20 @@ namespace Feature.FlipWall
 		bool TryGetActor(Collider other, out IWallTransitActor actor)
 		{
 			var rb = other.attachedRigidbody;
-			if (rb != null &&
-			    rb.TryGetComponent<IWallTransitActor>(out actor))
+			Component c = rb == null ? other : rb;
+			if (c.TryGetComponent<IWallTransitActor>(out actor))
 				return true;
 
 			actor = null;
-			return true;
+			return false;
+		}
+
+		void OnDestroy()
+		{
+			_actorEntered.OnCompleted();
+			_actorEntered.Dispose();
+			_actorExited.OnCompleted();
+			_actorExited.Dispose();
 		}
 	}
 }

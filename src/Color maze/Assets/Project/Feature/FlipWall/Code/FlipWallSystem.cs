@@ -5,8 +5,16 @@ namespace Feature.FlipWall
 {
 	public sealed class FlipWallSystem : MonoBehaviour, IFlipWallSystem
 	{
+		[SerializeField] WallKey _startAvailableWallKey;
+
 		WallKey _currentAvailableKey;
 		Dictionary<WallKey, HashSet<IWall>> _walls = new();
+
+		void Start()
+		{
+			foreach (var wall in _walls[_startAvailableWallKey])
+				wall.Block(false);
+		}
 
 		public void Registry(IWall wall, WallKey key)
 		{

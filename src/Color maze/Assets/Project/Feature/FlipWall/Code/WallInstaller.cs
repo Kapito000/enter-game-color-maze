@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using CapLib.StateMachine;
+using CapLib.BaseStateMachines;
 using Feature.FlipWall.StateMachine;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Feature.FlipWall
@@ -41,7 +40,7 @@ namespace Feature.FlipWall
 			Container
 				.Bind<IWallStateMachine>()
 				.To<WallStateMachine>()
-				.AsTransient();
+				.AsSingle();
 		}
 
 		void BindWall()

@@ -1,8 +1,11 @@
-﻿using CapLib.Id;
+﻿using System.Diagnostics;
+using CapLib.Id;
 using CapLib.Instantiate;
 using CapLib.StateMachine;
 using Feature.FlipWall.StateMachine;
 using Feature.FlipWall.StateMachine.States;
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -12,7 +15,11 @@ namespace Feature.FlipWall
 	public sealed class Wall : MonoBehaviour, IWall, IWallData
 	{
 		[SerializeField] WallKey _key;
-		
+#if UNITY_EDITOR
+		[Space, ReadOnly]
+		[SerializeField] State _state;
+#endif
+
 		[Inject] IId _id;
 		[Inject] Collider _blockCollider;
 		[Inject] IWallTrigger[] _wallTriggers;
@@ -25,9 +32,9 @@ namespace Feature.FlipWall
 		public IWallTrigger[] ContactTriggers { get; private set; }
 
 		[Inject]
-		void Construct(IAssociationWithId association)
+		void Construct(IAssociationWithId[] association)
 		{
-			association.Associate(_id);
+			association.ForEach(x => x.Associate(_id));
 		}
 
 		void Awake()
@@ -36,6 +43,7 @@ namespace Feature.FlipWall
 			InitStateMachine();
 			TriggersEventProcess();
 			RegistryInSystem();
+			CurrentStateKeyChangeSubscribe();
 		}
 
 		public void Block(bool enable)
@@ -78,5 +86,12 @@ namespace Feature.FlipWall
 
 		T CreateState<T>() where T : IWallState =>
 			_instantiator.Instantiate<T>();
+
+		[Conditional("UNITY_EDITOR")]
+		void CurrentStateKeyChangeSubscribe()
+		{
+			_stateMachine.CurrentStateKey.Subscribe(value => _state = value)
+				.AddTo(this);
+		}
 	}
 }
