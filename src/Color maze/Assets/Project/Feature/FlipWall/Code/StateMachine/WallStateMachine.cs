@@ -1,4 +1,4 @@
-﻿using CapLib.StateMachine;
+﻿using CapLib.BaseStateMachines;
 using UnityEngine.Assertions;
 
 namespace Feature.FlipWall.StateMachine
@@ -15,7 +15,7 @@ namespace Feature.FlipWall.StateMachine
 			Assert.IsNotNull(actor);
 			Assert.IsNotNull(trigger);
 
-			CurrentState.ActorEnterProcess(actor, trigger);
+			CurrentState.Value.ActorEnterProcess(actor, trigger);
 		}
 
 		public void ActorExitProcess(IWallTransitActor actor, IWallTrigger trigger)
@@ -23,7 +23,7 @@ namespace Feature.FlipWall.StateMachine
 			Assert.IsNotNull(actor);
 			Assert.IsNotNull(trigger);
 
-			CurrentState.ActorExitProcess(actor, trigger);
+			CurrentState.Value.ActorExitProcess(actor, trigger);
 		}
 	}
 }
