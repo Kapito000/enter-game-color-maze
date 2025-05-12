@@ -1,9 +1,11 @@
-﻿using System;
+﻿using UniRx;
 
 namespace CapLib.StateMachine
 {
-	public interface IStateMachine<in TStateKey, TState> where TState : IState
+	public interface IStateMachine<TStateKey, TState> where TState : IState
 	{
+		IReadOnlyReactiveProperty<TState> CurrentState { get; }
+		IReadOnlyReactiveProperty<TStateKey> CurrentStateKey { get; }
 		bool TryAddState(TStateKey key, TState state);
 		bool TryEnter(TStateKey key);
 	}

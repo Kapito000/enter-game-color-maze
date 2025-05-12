@@ -1,4 +1,6 @@
-﻿namespace CapLib.StateMachine
+﻿using CapLib.StateMachine;
+
+namespace CapLib.BaseStateMachines
 {
 	public class MediatorFactory<TState> : IStateMediatorFactory<TState>
 		where TState : class, IState

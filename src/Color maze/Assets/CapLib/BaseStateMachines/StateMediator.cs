@@ -1,6 +1,7 @@
-﻿using UnityEngine.Assertions;
+﻿using CapLib.StateMachine;
+using UnityEngine.Assertions;
 
-namespace CapLib.StateMachine
+namespace CapLib.BaseStateMachines
 {
 	public class StateMediator<TState> : IStateMediator<TState>
 		where TState : class, IState

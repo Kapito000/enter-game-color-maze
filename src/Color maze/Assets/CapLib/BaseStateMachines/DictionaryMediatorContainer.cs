@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using CapLib.StateMachine;
 
-namespace CapLib.StateMachine
+namespace CapLib.BaseStateMachines
 {
 	public class DictionaryMediatorContainer<TStateKey, TState>
 		: IMediatorContainer<TStateKey, TState>

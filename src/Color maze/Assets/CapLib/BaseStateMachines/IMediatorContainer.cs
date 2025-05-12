@@ -1,4 +1,6 @@
-﻿namespace CapLib.StateMachine
+﻿using CapLib.StateMachine;
+
+namespace CapLib.BaseStateMachines
 {
 	public interface IMediatorContainer<TStateKey, TState>
 		where TState : class, IState
