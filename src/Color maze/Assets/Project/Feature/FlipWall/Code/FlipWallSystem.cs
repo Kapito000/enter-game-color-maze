@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 namespace Feature.FlipWall
@@ -7,8 +8,16 @@ namespace Feature.FlipWall
 	{
 		[SerializeField] WallKey _startAvailableWallKey;
 
-		WallKey _currentAvailableKey;
+		[SerializeField] WallKeyReactiveProperty _currentAvailableKey;
 		Dictionary<WallKey, HashSet<IWall>> _walls = new();
+
+		public IReadOnlyReactiveProperty<WallKey> CurrentAvailableKey =>
+			_currentAvailableKey;
+
+		void Awake()
+		{
+			_currentAvailableKey.Value = _startAvailableWallKey;
+		}
 
 		void Start()
 		{
@@ -26,12 +35,12 @@ namespace Feature.FlipWall
 
 		public void Flip()
 		{
-			foreach (var wall in _walls[_currentAvailableKey])
+			foreach (var wall in _walls[_currentAvailableKey.Value])
 				wall.Block(true);
 
-			_currentAvailableKey = _currentAvailableKey.Flip();
+			_currentAvailableKey.Value = _currentAvailableKey.Value.Flip();
 
-			foreach (var wall in _walls[_currentAvailableKey])
+			foreach (var wall in _walls[_currentAvailableKey.Value])
 				wall.Block(false);
 		}
 	}
