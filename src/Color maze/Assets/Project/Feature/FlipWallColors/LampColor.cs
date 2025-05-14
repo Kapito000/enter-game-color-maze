@@ -8,12 +8,10 @@ namespace Feature.FlipWallColors
 {
 	public sealed class LampColor : MonoBehaviour
 	{
-		[Header("Services")]
-		[SerializeField] WallColorSystem _wallColorSystem;
-		[Space]
 		[SerializeField] Light _light;
 		
 		[Inject] IFlipWallSystem _flipWallSystem;
+		[Inject] IWallColorSystem _wallColorSystem;
 		
 		void Awake()
 		{
