@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using CapLib.Common;
+using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,30 +7,13 @@ namespace CapLib.SceneLoad
 {
 	public class SceneLoader : ISceneLoader
 	{
-		readonly ICoroutineRunner _coroutineRunner;
-
-		public SceneLoader(ICoroutineRunner coroutineRunner)
+		public void Load(string name, Action onLoaded)
 		{
-			_coroutineRunner = coroutineRunner;
-		}
-
-		public void Load(string name, Action onLoaded = null) =>
-			_coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
-
-		IEnumerator LoadScene(string name, Action onLoaded = null)
-		{
-			if (SceneManager.GetActiveScene().name == name)
-			{
-				onLoaded?.Invoke();
-				yield break;
-			}
-
-			AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(name);
-
-			while (!waitNextScene.isDone)
-				yield return null;
-
-			onLoaded?.Invoke();
+			SceneManager.LoadSceneAsync(name)
+				.AsObservable()
+				.Do(x=> Debug.Log(x.progress))
+				.First()
+				.Subscribe(_ => onLoaded?.Invoke());
 		}
 	}
 }
