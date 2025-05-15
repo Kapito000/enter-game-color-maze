@@ -1,10 +1,14 @@
+using System;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Game.Input
 {
-	public sealed class MovementInput : IMovementInput
+	public sealed class MovementInput : IMovementInput, IDisposable
 	{
+		CompositeDisposable _disposables = new();
+
 		readonly Actions _actions;
 
 		public Vector2 NormVelocity { get; private set; }
@@ -12,7 +16,7 @@ namespace Game.Input
 		public MovementInput(Actions actions)
 		{
 			_actions = actions;
-			_actions.Movement.Velocity.performed += OnMovementDirectionPerformed;
+			MovementVelocityPerformedSubscribe();
 		}
 
 		public void Enable()
@@ -25,7 +29,19 @@ namespace Game.Input
 			_actions.Movement.Disable();
 		}
 
-		void OnMovementDirectionPerformed(InputAction.CallbackContext context) =>
-			NormVelocity = context.ReadValue<Vector2>();
+		public void Dispose()
+		{
+			_disposables.Dispose();
+		}
+
+		void MovementVelocityPerformedSubscribe()
+		{
+			Observable
+				.FromEvent<InputAction.CallbackContext>(
+					h => _actions.Movement.Velocity.performed += h,
+					h => _actions.Movement.Velocity.performed -= h)
+				.Subscribe(context => NormVelocity = context.ReadValue<Vector2>())
+				.AddTo(_disposables);
+		}
 	}
 }

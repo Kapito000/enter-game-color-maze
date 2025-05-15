@@ -37,9 +37,7 @@ namespace Feature.FlipWall
 
 		bool TryGetActor(Collider other, out IWallTransitActor actor)
 		{
-			var rb = other.attachedRigidbody;
-			Component c = rb == null ? other : rb;
-			if (c.TryGetComponent<IWallTransitActor>(out actor))
+			if (other.TryGetComponent<IWallTransitActor>(out actor))
 				return true;
 
 			actor = null;
