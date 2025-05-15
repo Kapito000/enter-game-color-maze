@@ -17,20 +17,23 @@ namespace CapLib.Instantiate
 			return instance;
 		}
 
-		public GameObject Instantiate(Object prefab, Vector2 pos) =>
+		public GameObject Instantiate(Object prefab, Vector3 pos) =>
 			_container.InstantiatePrefab(prefab, pos, quaternion.identity, null);
 
+		public GameObject Instantiate(Object prefab, Vector3 pos, Quaternion rot) =>
+			_container.InstantiatePrefab(prefab, pos, rot, null);
+		
 		public GameObject Instantiate(Object prefab, Transform parent)
 		{
 			return _container.InstantiatePrefab(prefab, parent);
 		}
 
 
-		public GameObject Instantiate(GameObject prefab, Vector2 pos,
+		public GameObject Instantiate(GameObject prefab, Vector3 pos,
 			Transform parent) =>
 			Instantiate(prefab, pos, quaternion.identity, parent);
 
-		public GameObject Instantiate(GameObject prefab, Vector2 pos = new(),
+		public GameObject Instantiate(GameObject prefab, Vector3 pos = new(),
 			Quaternion rot = new(), Transform parent = null)
 		{
 			var instance = _container
@@ -40,11 +43,11 @@ namespace CapLib.Instantiate
 
 
 		public GameObject Instantiate(GameObject prefab, string name,
-			Vector2 pos = new(), Transform parent = null) =>
+			Vector3 pos = new(), Transform parent = null) =>
 			Instantiate(prefab, name, pos, quaternion.identity, parent);
 
 		public GameObject Instantiate(GameObject prefab, string name,
-			Vector2 pos = new(), Quaternion rot = new(),
+			Vector3 pos = new(), Quaternion rot = new(),
 			Transform parent = null)
 		{
 			var parameters = new GameObjectCreationParameters()

@@ -1,6 +1,5 @@
 using System;
 using UniRx;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CapLib.SceneLoad
@@ -11,7 +10,6 @@ namespace CapLib.SceneLoad
 		{
 			SceneManager.LoadSceneAsync(name)
 				.AsObservable()
-				.Do(x=> Debug.Log(x.progress))
 				.First()
 				.Subscribe(_ => onLoaded?.Invoke());
 		}
