@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Feature.FlipWallColors
 {
-	public sealed class WallColorSystem : ScriptableObject, IWallColorSystem
+	public sealed class WallColorSystem : MonoBehaviour, IWallColorSystem
 	{
 		[SerializeField] WallKeyColorsDictionary _wallColors = new();
 
