@@ -1,7 +1,7 @@
-﻿using UnityEditor;
+﻿using CapLib.ZenjectExtension;
+using UnityEditor;
 using UnityEngine;
 using Zenject;
-using ZenjectExtension;
 
 namespace CapLib.ZenjectEditor
 {

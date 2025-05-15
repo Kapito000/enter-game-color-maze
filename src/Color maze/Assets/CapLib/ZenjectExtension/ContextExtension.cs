@@ -2,7 +2,7 @@
 using System.Linq;
 using Zenject;
 
-namespace ZenjectExtension
+namespace CapLib.ZenjectExtension
 {
 	public static class ContextExtension
 	{
