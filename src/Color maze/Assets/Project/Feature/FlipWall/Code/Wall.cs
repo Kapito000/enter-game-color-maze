@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using CapLib.Id;
-using CapLib.Instantiate;
 using CapLib.StateMachine;
 using Feature.FlipWall.StateMachine;
 using Feature.FlipWall.StateMachine.States;
@@ -25,7 +24,7 @@ namespace Feature.FlipWall
 		[Inject] IWallTrigger[] _wallTriggers;
 		[Inject] IFlipWallSystem _flipWallSystem;
 		[Inject] IWallStateMachine _stateMachine;
-		[Inject] IInstantiateService _instantiator;
+		[Inject] IInstantiator _instantiator;
 
 		public IId Id => _id;
 		public IWallTransitActor Actor { get; set; }
