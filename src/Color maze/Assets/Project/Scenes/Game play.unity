@@ -1019,8 +1019,8 @@ MonoBehaviour:
   _wallColors:
     _keyData: 0000000001000000
     _valueData:
-    - {r: 0.2970481, g: 1, b: 0, a: 1}
     - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
 --- !u!4 &1587975716
 Transform:
   m_ObjectHideFlags: 0
