@@ -4,6 +4,7 @@ using CapLib.GameStatus;
 using CapLib.Id;
 using CapLib.SceneLoad;
 using Game.Input;
+using Infrastructure.AssetProvider;
 using Infrastructure.Configuration;
 using Infrastructure.GameProgress;
 using Infrastructure.GameStatus.State;
@@ -21,11 +22,20 @@ namespace Infrastructure.Installer
 		{
 			BindIdFactory();
 			BindSceneLoader();
+			BindAssetProvider();
 			BindInputServices();
 			BindCoroutineRunner();
 			BindGameSceneMachine();
 			BindGameConfiguration();
 			BindGameProgressService();
+		}
+
+		void BindAssetProvider()
+		{
+			Container
+				.Bind<IAssetProvider>()
+				.To<AddressablesAssetProvider>()
+				.AsSingle();
 		}
 
 		void BindGameProgressService()

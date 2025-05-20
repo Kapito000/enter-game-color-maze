@@ -1,5 +1,4 @@
-﻿using Feature.HeroSpawn.AssetProvider;
-using Feature.HeroSpawn.Factory;
+﻿using Feature.HeroSpawn.Factory;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Zenject;
@@ -10,23 +9,12 @@ namespace Feature.HeroSpawn
 	{
 		[SerializeField] HeroSpawnPoint _heroSpawnPoint;
 		[SerializeField] HeroSpawnSystem _heroSpawnSystem;
-		[SerializeField] HeroAssetProvider _heroAssetProvider;
 
 		public override void InstallBindings()
 		{
 			BindHeroFactory();
 			BindHeroSpawnPoint();
 			BindHeroSpawnSystem();
-			BindHeroAssetProvider();
-		}
-
-		void BindHeroAssetProvider()
-		{
-			Assert.IsNotNull(_heroAssetProvider);
-			Container
-				.Bind<IHeroAssetProvider>()
-				.FromInstance(_heroAssetProvider)
-				.AsSingle();
 		}
 
 		void BindHeroFactory()
