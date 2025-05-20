@@ -1,9 +1,7 @@
-using System;
 using CapLib.Common;
 using CapLib.GameStatus;
 using CapLib.Id;
 using CapLib.SceneLoad;
-using Game.Input;
 using Infrastructure.AssetProvider;
 using Infrastructure.Configuration;
 using Infrastructure.GameProgress;
@@ -23,7 +21,6 @@ namespace Infrastructure.Installer
 			BindIdFactory();
 			BindSceneLoader();
 			BindAssetProvider();
-			BindInputServices();
 			BindCoroutineRunner();
 			BindGameSceneMachine();
 			BindGameConfiguration();
@@ -53,15 +50,6 @@ namespace Infrastructure.Installer
 		{
 			var idFactory = Container.Resolve<IIdFactory>();
 			return idFactory.CreateId();
-		}
-
-		void BindInputServices()
-		{
-			Container.Bind<Game.Input.InputActions>().AsSingle();
-			Container.Bind<IInputService>().To<InputService>().AsSingle();
-			Container
-				.Bind(typeof(IMovementInput), typeof(IDisposable))
-				.To<MovementInput>().AsSingle();
 		}
 
 		void BindCoroutineRunner()
