@@ -89,8 +89,10 @@ namespace Feature.FlipWall
 		[Conditional("UNITY_EDITOR")]
 		void CurrentStateKeyChangeSubscribe()
 		{
+#if UNITY_EDITOR
 			_stateMachine.CurrentStateKey.Subscribe(value => _state = value)
 				.AddTo(this);
+#endif
 		}
 	}
 }

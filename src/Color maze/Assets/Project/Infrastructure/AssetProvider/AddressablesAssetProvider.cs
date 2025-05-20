@@ -19,7 +19,7 @@ namespace Infrastructure.AssetProvider
 				_handles.Add(address, handle);
 				await handle.ToUniTask();
 
-				if (CheckSucceededStatus(handle, address))
+				if (CheckSucceededStatus(handle, address) == false)
 					return null;
 
 				return handle.Result as T;
@@ -33,7 +33,7 @@ namespace Infrastructure.AssetProvider
 			if (handle.Status == AsyncOperationStatus.None)
 			{
 				await handle.ToUniTask();
-				if (CheckSucceededStatus(handle, address))
+				if (CheckSucceededStatus(handle, address) == false)
 					return null;
 			}
 
