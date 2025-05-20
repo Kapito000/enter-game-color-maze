@@ -1,5 +1,5 @@
 {
-    "name": "Actions",
+    "name": "InputActions",
     "maps": [
         {
             "name": "Movement",

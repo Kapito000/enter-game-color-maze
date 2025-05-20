@@ -4,7 +4,7 @@ namespace Game.Input
 {
 	public sealed class InputService : IInputService
 	{
-		[Inject] readonly Actions _actions;
+		[Inject] readonly InputActions _actions;
 
 		public void Enable()
 		{

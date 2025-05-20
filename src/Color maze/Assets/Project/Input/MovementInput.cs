@@ -9,11 +9,11 @@ namespace Game.Input
 	{
 		CompositeDisposable _disposables = new();
 
-		readonly Actions _actions;
+		readonly InputActions _actions;
 
 		public Vector2 NormVelocity { get; private set; }
 
-		public MovementInput(Actions actions)
+		public MovementInput(InputActions actions)
 		{
 			_actions = actions;
 			MovementVelocityPerformedSubscribe();

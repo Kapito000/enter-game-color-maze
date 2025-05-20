@@ -57,7 +57,7 @@ namespace Infrastructure.Installer
 
 		void BindInputServices()
 		{
-			Container.Bind<Game.Input.Actions>().AsSingle();
+			Container.Bind<Game.Input.InputActions>().AsSingle();
 			Container.Bind<IInputService>().To<InputService>().AsSingle();
 			Container
 				.Bind(typeof(IMovementInput), typeof(IDisposable))
