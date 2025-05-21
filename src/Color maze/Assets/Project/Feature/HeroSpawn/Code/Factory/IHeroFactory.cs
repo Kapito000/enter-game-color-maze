@@ -6,6 +6,6 @@ namespace Feature.HeroSpawn.Factory
 {
 	public interface IHeroFactory : IFactory
 	{
-		UniTask<GameObject> Create(Vector3 pos, Quaternion rot);
+		GameObject Create(Vector3 pos, Quaternion rot);
 	}
 }

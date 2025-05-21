@@ -1,5 +1,4 @@
 ﻿using CapLib.Common;
-using Cysharp.Threading.Tasks;
 using Feature.HeroSpawn.Factory;
 using UnityEngine;
 using Zenject;
@@ -13,19 +12,22 @@ namespace Feature.HeroSpawn
 
 		void Start()
 		{
-			Spawn().Forget();
+			Spawn();
 		}
 
-		async UniTaskVoid Spawn()
+		void Spawn()
 		{
 			if (CanSpawn() == false)
 				return;
 
 			var pos = _spawnPoint.Pos();
 			var rot = _spawnPoint.Rot();
-			var hero = await _factory.Create(pos, rot);
+			var hero = _factory.Create(pos, rot);
 			if (hero == null)
+			{
+				Debug.LogError($"Can't spawn hero.");
 				return;
+			}
 		}
 
 		bool CanSpawn() =>
