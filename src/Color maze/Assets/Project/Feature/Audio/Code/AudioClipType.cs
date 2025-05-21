@@ -1,5 +1,7 @@
-﻿namespace Feature.Audio
+﻿namespace Feature.Audio.Code
 {
 	public enum AudioClipType
-	{ }
+	{
+		HumanoidStep,
+	}
 }

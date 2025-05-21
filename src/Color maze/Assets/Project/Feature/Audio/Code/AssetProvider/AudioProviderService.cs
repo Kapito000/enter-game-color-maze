@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Feature.Audio.AssetProvider
+namespace Feature.Audio.Code.AssetProvider
 {
 	public sealed class AudioProviderService : IAudioProviderService
 	{

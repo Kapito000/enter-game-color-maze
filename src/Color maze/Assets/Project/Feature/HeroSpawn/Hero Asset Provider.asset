@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aeaa18c15d743a4a092dfd243f4497d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2945cda0aeb64d54bfe584648c5d4008, type: 3}
   m_Name: Hero Asset Provider
   m_EditorClassIdentifier: 
   _hero: {fileID: 7756514912047678005, guid: ff7ec6f44c230ac4e82ad1ddc5a1598b, type: 3}

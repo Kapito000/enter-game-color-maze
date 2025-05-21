@@ -2,7 +2,7 @@
 using CapLib.Collection;
 using UnityEngine;
 
-namespace Feature.Audio.AssetProvider
+namespace Feature.Audio.Code.AssetProvider
 {
 	[Serializable]
 	public sealed class

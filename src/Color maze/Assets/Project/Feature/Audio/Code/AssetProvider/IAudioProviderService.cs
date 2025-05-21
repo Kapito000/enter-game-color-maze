@@ -1,7 +1,7 @@
 ﻿using CapLib.Common;
 using UnityEngine;
 
-namespace Feature.Audio.AssetProvider
+namespace Feature.Audio.Code.AssetProvider
 {
 	public interface IAudioProviderService : IService
 	{

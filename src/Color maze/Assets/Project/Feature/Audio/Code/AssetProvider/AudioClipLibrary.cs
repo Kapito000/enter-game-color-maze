@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Menu = Constant.CreateAssetMenu;
 
-namespace Feature.Audio.AssetProvider
+namespace Feature.Audio.Code.AssetProvider
 {
 	[CreateAssetMenu(menuName = Menu.StaticData + nameof(AudioClipLibrary))]
 	public sealed class AudioClipLibrary : ScriptableObject,

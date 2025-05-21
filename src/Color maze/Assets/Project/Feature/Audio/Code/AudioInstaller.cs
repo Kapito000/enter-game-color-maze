@@ -1,8 +1,8 @@
-﻿using Feature.Audio.AssetProvider;
+﻿using Feature.Audio.Code.AssetProvider;
 using UnityEngine;
 using Zenject;
 
-namespace Feature.Audio
+namespace Feature.Audio.Code
 {
 	public sealed class AudioInstaller : MonoInstaller
 	{
@@ -10,7 +10,16 @@ namespace Feature.Audio
 
 		public override void InstallBindings()
 		{
+			BindAudioProviderService();
 			BindAudioClipLibrary();
+		}
+
+		void BindAudioProviderService()
+		{
+			Container
+				.Bind<IAudioProviderService>()
+				.To<AudioProviderService>()
+				.AsSingle();
 		}
 
 		void BindAudioClipLibrary()
@@ -18,7 +27,8 @@ namespace Feature.Audio
 			Container
 				.Bind<IAudioClipLibrary<AudioClipType>>()
 				.FromInstance(_clipLibrary)
-				.AsSingle();
+				.AsSingle()
+				.WhenInjectedInto<IAudioProviderService>();
 		}
 	}
 }

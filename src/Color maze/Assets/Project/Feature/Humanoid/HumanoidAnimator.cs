@@ -26,8 +26,5 @@ namespace Feature.Humanoid
 		{
 			_animator.SetFloat(_speedHash, speedValue);
 		}
-
-		void OnFootstep() // Animation event.
-		{ }
 	}
 }
