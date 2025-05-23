@@ -5,5 +5,6 @@
 		HumanoidStep,
 		AmbientSound,
 		SecondAmbientSound,
+		FlipWall,
 	}
 }

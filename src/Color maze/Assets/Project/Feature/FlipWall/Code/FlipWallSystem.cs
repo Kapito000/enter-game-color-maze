@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
 namespace Feature.FlipWall
 {
-	public sealed class FlipWallSystem : MonoBehaviour, IFlipWallSystem
+	public sealed class FlipWallSystem : MonoBehaviour, IFlipWallSystem,
+		IDisposable
 	{
 		[SerializeField] WallKey _startAvailableWallKey;
-
 		[SerializeField] WallKeyReactiveProperty _currentAvailableKey;
+
 		Dictionary<WallKey, HashSet<IWall>> _walls = new();
+
+		readonly Subject<Unit> _wallTurned = new();
+
+		public IObservable<Unit> WallTurned => _wallTurned;
 
 		public IReadOnlyReactiveProperty<WallKey> CurrentAvailableKey =>
 			_currentAvailableKey;
@@ -42,6 +48,22 @@ namespace Feature.FlipWall
 
 			foreach (var wall in _walls[_currentAvailableKey.Value])
 				wall.Block(false);
+
+			WallFlipped();
+		}
+
+		void WallFlipped() =>
+			_wallTurned.OnNext(Unit.Default);
+
+		void OnDestroy()
+		{
+			Dispose();
+		}
+
+		public void Dispose()
+		{
+			_wallTurned.OnCompleted();
+			_wallTurned.Dispose();
 		}
 	}
 }
