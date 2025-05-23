@@ -4,5 +4,6 @@
 	{
 		HumanoidStep,
 		AmbientSound,
+		SecondAmbientSound,
 	}
 }

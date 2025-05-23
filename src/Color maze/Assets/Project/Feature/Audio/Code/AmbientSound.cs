@@ -6,16 +6,16 @@ namespace Feature.Audio.Code
 {
 	public sealed class AmbientSound : MonoBehaviour
 	{
+		[SerializeField] AudioClipType _clipType = AudioClipType.AmbientSound;
 		[SerializeField] AudioSource _audioSource;
 
 		[Inject] IAudioProvider _audioProvider;
 
 		void Awake()
 		{
-			if (_audioProvider.TryGetClip(AudioClipType.AmbientSound,
-				    out AudioClip clip) == false)
+			if (_audioProvider.TryGetClip(_clipType, out AudioClip clip) == false)
 			{
-				Debug.LogError("Cannot find ambient sound clip.");
+				Debug.LogError($"Cannot find ambient sound clip: {_clipType}.");
 				enabled = false;
 				return;
 			}

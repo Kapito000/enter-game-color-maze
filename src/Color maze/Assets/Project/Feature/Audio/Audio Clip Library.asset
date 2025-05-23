@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Audio Clip Library
   m_EditorClassIdentifier: 
   _clips:
-    _keyData: 00000000
+    _keyData: 000000000100000002000000
     _valueData:
     - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
+    - {fileID: 8300000, guid: 0b852c60ab20dce4da4a9e2a7d2740bd, type: 3}
+    - {fileID: 8300000, guid: d95e540c326e423479717d89ad3b1390, type: 3}
