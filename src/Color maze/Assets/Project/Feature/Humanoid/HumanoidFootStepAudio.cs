@@ -12,13 +12,13 @@ namespace Feature.Humanoid
 		[SerializeField] AudioSource _stepAudioSource;
 
 		[Inject] IHumanoidMovement _movement;
-		[Inject] IAudioProviderService _audioProviderService;
+		[Inject] IAudioProvider _audioProvider;
 
 		void Awake()
 		{
 			Assert.IsNotNull(_stepAudioSource);
 
-			if (_audioProviderService.TryGetClip(AudioClipType.HumanoidStep,
+			if (_audioProvider.TryGetClip(AudioClipType.HumanoidStep,
 				    out var clip) == false)
 				return;
 

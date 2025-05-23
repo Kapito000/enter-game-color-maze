@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Feature.Audio.Code.AssetProvider
 {
-	public sealed class AudioProviderService : IAudioProviderService
+	public sealed class AudioProvider : IAudioProvider
 	{
 		[Inject] IAudioClipLibrary<AudioClipType> _library;
 

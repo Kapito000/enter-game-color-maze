@@ -17,8 +17,8 @@ namespace Feature.Audio.Code
 		void BindAudioProviderService()
 		{
 			Container
-				.Bind<IAudioProviderService>()
-				.To<AudioProviderService>()
+				.Bind<IAudioProvider>()
+				.To<AudioProvider>()
 				.AsSingle();
 		}
 
@@ -28,7 +28,7 @@ namespace Feature.Audio.Code
 				.Bind<IAudioClipLibrary<AudioClipType>>()
 				.FromInstance(_clipLibrary)
 				.AsSingle()
-				.WhenInjectedInto<IAudioProviderService>();
+				.WhenInjectedInto<IAudioProvider>();
 		}
 	}
 }

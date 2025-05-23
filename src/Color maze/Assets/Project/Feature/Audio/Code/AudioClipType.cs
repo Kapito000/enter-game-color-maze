@@ -3,5 +3,6 @@
 	public enum AudioClipType
 	{
 		HumanoidStep,
+		AmbientSound,
 	}
 }

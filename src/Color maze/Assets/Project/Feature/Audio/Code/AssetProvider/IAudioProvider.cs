@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Feature.Audio.Code.AssetProvider
 {
-	public interface IAudioProviderService : IService
+	public interface IAudioProvider : IService
 	{
 		bool TryGetClip(AudioClipType key, out AudioClip clip);
 	}
