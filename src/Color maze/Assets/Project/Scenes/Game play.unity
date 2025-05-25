@@ -789,6 +789,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ambient sound root
       objectReference: {fileID: 0}
+    - target: {fileID: 6656867786126343926, guid: 2d08477e604474842bd10af2da9780b3, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 6452448361545647703, guid: f67fce882cb8b8b4ab147837f0bafc1e, type: 2}
+    - target: {fileID: 6783292278640097260, guid: 2d08477e604474842bd10af2da9780b3, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 6452448361545647703, guid: f67fce882cb8b8b4ab147837f0bafc1e, type: 2}
     - target: {fileID: 8809841691423718984, guid: 2d08477e604474842bd10af2da9780b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1071,7 +1079,7 @@ AudioSource:
   m_GameObject: {fileID: 1468287638}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7811170688672689270, guid: f67fce882cb8b8b4ab147837f0bafc1e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

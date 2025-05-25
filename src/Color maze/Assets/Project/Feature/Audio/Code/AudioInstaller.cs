@@ -1,4 +1,5 @@
 ﻿using Feature.Audio.Code.AssetProvider;
+using Feature.Audio.Code.MixerGroupProvider;
 using UnityEngine;
 using Zenject;
 
@@ -7,11 +8,21 @@ namespace Feature.Audio.Code
 	public sealed class AudioInstaller : MonoInstaller
 	{
 		[SerializeField] AudioClipLibrary _clipLibrary;
+		[SerializeField] AudioMixerProvider _audioMixerProvider;
 
 		public override void InstallBindings()
 		{
-			BindAudioProviderService();
 			BindAudioClipLibrary();
+			BindAudioMixerProvider();
+			BindAudioProviderService();
+		}
+
+		void BindAudioMixerProvider()
+		{
+			Container
+				.Bind<IAudioMixerProvider>()
+				.FromInstance(_audioMixerProvider)
+				.AsSingle();
 		}
 
 		void BindAudioProviderService()

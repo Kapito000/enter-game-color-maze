@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clipLibrary: {fileID: 11400000, guid: bfdd129235bead2498cb6fb3eaf07606, type: 2}
+  _audioMixerProvider: {fileID: 11400000, guid: 6acd23410b9551c42b23d24068345017, type: 2}
 --- !u!1 &4608583900733100367
 GameObject:
   m_ObjectHideFlags: 0
