@@ -15,25 +15,51 @@ namespace Infrastructure.GameStatus.State
 
 		public void Enter()
 		{
-			TryLoadFirstScene();
+			if (TryLoadFirstScene() == false)
+			{
+				Debug.LogError("Failed to load first scene.");
+				return;
+			}
+
 			_inputService.Enable();
 		}
 
 		public void Exit()
 		{ }
 
+
 		bool TryLoadFirstScene()
 		{
-			var firstSceneName = _gameConfig.FirstSceneName;
-			_sceneLoadState.SetLoadingScene(firstSceneName);
+			var firstSceneName = FirestScene();
+			return TryLoadScene(firstSceneName);
+		}
+
+		bool TryLoadScene(string sceneName)
+		{
+			_sceneLoadState.SetLoadingScene(sceneName);
 
 			if (_gameStateMachine.TryEnter<SceneLoad>() == false)
 			{
-				Debug.LogError($"Cannot to load first scene: {firstSceneName}");
+				Debug.LogError($"Cannot to load first scene: {sceneName}");
 				return false;
 			}
 
 			return true;
+		}
+
+		string FirestScene()
+		{
+#if UNITY_EDITOR
+			var shouldLoadBootstrapScene = CapLib.SceneBootstrapper.SceneBootstrapper
+				.ShouldLoadBootstrapScene;
+			var previousScene = CapLib.SceneBootstrapper.SceneBootstrapper
+				.PreviousScene;
+
+			if (shouldLoadBootstrapScene && !string.IsNullOrEmpty(previousScene))
+				return previousScene;
+#endif
+
+			return _gameConfig.FirstSceneName;
 		}
 	}
 }

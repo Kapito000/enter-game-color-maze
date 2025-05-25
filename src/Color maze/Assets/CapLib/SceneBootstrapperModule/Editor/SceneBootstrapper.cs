@@ -7,7 +7,8 @@ namespace CapLib.SceneBootstrapper
 	[InitializeOnLoad]
 	public class SceneBootstrapper
 	{
-		const string _previousScene = FullModuleName + "PreviousScene";
+		public const string _previousScene = FullModuleName + "PreviousScene";
+		
 		const string _shouldLoadBootstrap = FullModuleName + "LoadBootstrapScene";
 
 		const string _loadBootstrapMenu = FullModuleName +
@@ -17,13 +18,13 @@ namespace CapLib.SceneBootstrapper
 
 		static string BootstrapScene => EditorBuildSettings.scenes[0].path;
 
-		static string PreviousScene
+		public static string PreviousScene
 		{
 			get => EditorPrefs.GetString(_previousScene);
 			set => EditorPrefs.SetString(_previousScene, value);
 		}
 
-		static bool ShouldLoadBootstrapScene
+		public static bool ShouldLoadBootstrapScene
 		{
 			get => EditorPrefs.GetBool(_shouldLoadBootstrap, true);
 			set => EditorPrefs.SetBool(_shouldLoadBootstrap, value);
