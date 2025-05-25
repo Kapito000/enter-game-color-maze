@@ -7,6 +7,9 @@ namespace Feature.Humanoid
 	[RequireComponent(typeof(Animator))]
 	public sealed class HumanoidAnimator : MonoBehaviour
 	{
+		[Range(0, 1)]
+		[SerializeField] float _idleSpeed = .1f;
+
 		Animator _animator;
 		IHumanoidMovement _movement;
 
@@ -24,7 +27,11 @@ namespace Feature.Humanoid
 
 		void OnSpeedChanged(float speedValue)
 		{
-			_animator.SetFloat(_speedHash, speedValue);
+			var value = speedValue / _movement.MaxSpeed;
+			if (speedValue < _idleSpeed)
+				value = 0;
+
+			_animator.SetFloat(_speedHash, value);
 		}
 	}
 }

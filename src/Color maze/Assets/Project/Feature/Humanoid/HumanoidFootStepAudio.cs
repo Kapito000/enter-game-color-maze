@@ -1,4 +1,5 @@
-﻿using Feature.Audio.Code;
+﻿using CapLib.Extensions;
+using Feature.Audio.Code;
 using Feature.Audio.Code.AssetProvider;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -38,11 +39,7 @@ namespace Feature.Humanoid
 
 		void OnFootstep() // Animation event.
 		{
-			if (Mathf.Approximately(_movement.CurrentSpeed.Value, 0) ||
-			    _stepAudioSource.isPlaying)
-				return;
-
-			_stepAudioSource.Play();
+			_stepAudioSource.PlayIfNotPlaying();
 		}
 	}
 }

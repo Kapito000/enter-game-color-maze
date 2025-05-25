@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _maxSpeed: 5
   _acceleration: 10
   _rotationSpeed: 15
   _currentSpeed:
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fee9e89964ffcbc90cf4213802caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _idleSpeed: 0.1
 --- !u!114 &2556235373293869029
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,5 +7,6 @@ namespace Feature.Humanoid
 	{
 		void Move(Vector2 velocity);
 		IReadOnlyReactiveProperty<float> CurrentSpeed { get; }
+		float MaxSpeed { get; }
 	}
 }

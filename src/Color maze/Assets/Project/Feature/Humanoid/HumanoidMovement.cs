@@ -8,7 +8,7 @@ namespace Feature.Humanoid
 	[RequireComponent(typeof(CharacterController))]
 	public class HumanoidMovement : MonoBehaviour, IHumanoidMovement
 	{
-		[SerializeField] float _speed = 3f;
+		[SerializeField] float _maxSpeed = 3f;
 		[SerializeField] float _acceleration = 10f;
 		[SerializeField] float _rotationSpeed = 15f;
 		[ReadOnly]
@@ -17,6 +17,7 @@ namespace Feature.Humanoid
 		Vector3 _currentVelocity;
 		CharacterController _characterController;
 
+		public float MaxSpeed => _maxSpeed;
 		public IReadOnlyReactiveProperty<float> CurrentSpeed => _currentSpeed;
 
 		void Awake()
@@ -33,7 +34,7 @@ namespace Feature.Humanoid
 
 		public void Move(Vector2 velocity)
 		{
-			velocity = NormalizeVelocity(velocity);
+			velocity = NormalizeLimit(velocity);
 			CalculateCurrentSpeed(velocity);
 			Vector3 moveDirection = MoveDirection(velocity);
 			CalculateCurrentVelocity(moveDirection);
@@ -64,7 +65,8 @@ namespace Feature.Humanoid
 
 		void CalculateCurrentSpeed(Vector2 velocity)
 		{
-			float targetSpeed = Mathf.Lerp(0f, _speed, velocity.magnitude);
+			var velocityMagnitude = velocity.magnitude;
+			float targetSpeed = Mathf.Lerp(0f, MaxSpeed, velocityMagnitude);
 			_currentSpeed.Value = Mathf.Lerp(_currentSpeed.Value, targetSpeed,
 				_acceleration * Time.deltaTime);
 		}
@@ -82,7 +84,7 @@ namespace Feature.Humanoid
 			_characterController.Move(_currentVelocity * Time.deltaTime);
 		}
 
-		Vector2 NormalizeVelocity(Vector2 velocity) =>
+		Vector2 NormalizeLimit(Vector2 velocity) =>
 			velocity.sqrMagnitude > 1f
 				? velocity.normalized
 				: velocity;

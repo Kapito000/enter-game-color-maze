@@ -1,4 +1,5 @@
 ﻿using Game.Input;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Zenject;
@@ -23,12 +24,10 @@ namespace Feature.Humanoid
 		{
 			_movement = GetComponent<IHumanoidMovement>();
 			Assert.IsNotNull(_movement);
-		}
 
-		void Update()
-		{
-			var inputVelocity = _input.NormVelocity;
-			_movement.Move(inputVelocity);
+			Observable.EveryUpdate()
+				.Subscribe(_ => _movement.Move(_input.NormVelocity))
+				.AddTo(this);
 		}
 	}
 }
