@@ -16,7 +16,6 @@ namespace Feature.EndLevel
 
 		void OnTriggerEnter(Collider other)
 		{
-			Debug.Log(other.gameObject.name);
 			if (other.TryGetComponent<IEndLevelActor>(out _) == false)
 				return;
 

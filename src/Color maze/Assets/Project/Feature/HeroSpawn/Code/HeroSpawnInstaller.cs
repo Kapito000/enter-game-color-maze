@@ -10,7 +10,6 @@ namespace Feature.HeroSpawn
 	{
 		[SerializeField] HeroProvider _heroProvider;
 		[SerializeField] HeroSpawnPoint _heroSpawnPoint;
-		[SerializeField] HeroSpawnSystem _heroSpawnSystem;
 
 		public override void InstallBindings()
 		{
@@ -36,10 +35,9 @@ namespace Feature.HeroSpawn
 
 		void BindHeroSpawnSystem()
 		{
-			Assert.IsNotNull(_heroSpawnSystem);
 			Container
 				.Bind<IHeroSpawnSystem>()
-				.FromInstance(_heroSpawnSystem)
+				.To<HeroSpawnSystem>()
 				.AsSingle();
 		}
 
