@@ -1,9 +1,10 @@
 ﻿using System;
+using Game.Input;
 using Zenject;
 
-namespace Game.Input
+namespace Feature.MovementInput
 {
-	public sealed class InputInstaller : MonoInstaller
+	public sealed class MovementInputInstaller : MonoInstaller
 	{
 		public override void InstallBindings()
 		{

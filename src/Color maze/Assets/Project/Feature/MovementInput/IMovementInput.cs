@@ -1,6 +1,7 @@
+using Game.Input;
 using UnityEngine;
 
-namespace Game.Input
+namespace Feature.MovementInput
 {
 	public interface IMovementInput : IInputService
 	{

@@ -1,34 +1,32 @@
-using Feature.Camera.AssetProvider;
+using Feature.CameraModule.AssetProvider;
 using Unity.Cinemachine;
 using UnityEngine;
 using Zenject;
 
-namespace Feature.Camera.Factory
+namespace Feature.CameraModule.Factory
 {
 	public class CameraFactory : ICameraFactory
 	{
 		[Inject] IInstantiator _instantiator;
-		[Inject] ICameraProvider _cameraProvider;
+		[Inject] ICameraAssetProvider _cameraAssetProvider;
 
-		public CinemachineCamera Create(Transform target)
+		public CinemachineCamera CreateVirtualCamera(Transform target)
 		{
-			SpawnCamera();
 			var cmCamera = SpawnCinemachineCamera();
 			cmCamera.Follow = target;
 			cmCamera.LookAt = target;
 			return cmCamera;
 		}
 
-		void SpawnCamera()
+		public Camera CreateCamera()
 		{
-			var prefab = _cameraProvider.Camera();
-			var instance = _instantiator
-				.InstantiatePrefabForComponent<UnityEngine.Camera>(prefab);
+			var prefab = _cameraAssetProvider.Camera();
+			return _instantiator.InstantiatePrefabForComponent<Camera>(prefab);
 		}
 
 		CinemachineCamera SpawnCinemachineCamera()
 		{
-			var prefab = _cameraProvider.CinemachineCamera();
+			var prefab = _cameraAssetProvider.CinemachineCamera();
 			return _instantiator
 				.InstantiatePrefabForComponent<CinemachineCamera>(prefab);
 		}

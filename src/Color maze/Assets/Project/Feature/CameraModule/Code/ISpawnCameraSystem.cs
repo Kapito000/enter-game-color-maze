@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Feature.Camera
+namespace Feature.CameraModule
 {
 	public interface ISpawnCameraSystem
 	{

@@ -1,9 +1,10 @@
 using System;
+using Game.Input;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Game.Input
+namespace Feature.MovementInput
 {
 	public sealed class MovementInput : IMovementInput, IDisposable
 	{

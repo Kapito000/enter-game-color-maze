@@ -127,6 +127,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Camera",
+            "id": "1eb2a974-54d1-48b3-aed4-dd5faf3ff3d5",
+            "actions": [
+                {
+                    "name": "OverviewLevel",
+                    "type": "Button",
+                    "id": "aff73c5f-7e53-46f5-932e-4a609a957b82",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "329298df-6f51-49c0-a45f-2b79178c1ba9",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "OverviewLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

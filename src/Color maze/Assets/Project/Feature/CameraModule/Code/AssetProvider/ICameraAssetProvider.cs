@@ -1,9 +1,9 @@
 using CapLib.Common;
 using Unity.Cinemachine;
 
-namespace Feature.Camera.AssetProvider
+namespace Feature.CameraModule.AssetProvider
 {
-	public interface ICameraProvider : IAssetProvider
+	public interface ICameraAssetProvider : IAssetProvider
 	{
 		UnityEngine.Camera Camera();
 		CinemachineCamera CinemachineCamera();

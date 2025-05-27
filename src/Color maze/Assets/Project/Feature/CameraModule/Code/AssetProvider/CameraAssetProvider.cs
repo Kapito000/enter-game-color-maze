@@ -3,10 +3,10 @@ using Unity.Cinemachine;
 using UnityEngine;
 using Menu = Constant.CreateAssetMenu;
 
-namespace Feature.Camera.AssetProvider
+namespace Feature.CameraModule.AssetProvider
 {
-	[CreateAssetMenu(menuName = Menu.StaticData + nameof(CameraProvider))]
-	public sealed class CameraProvider : ScriptableObject, ICameraProvider
+	[CreateAssetMenu(menuName = Menu.StaticData + nameof(CameraAssetProvider))]
+	public sealed class CameraAssetProvider : ScriptableObject, ICameraAssetProvider
 	{
 		[Required]
 		[SerializeField] UnityEngine.Camera _camera;

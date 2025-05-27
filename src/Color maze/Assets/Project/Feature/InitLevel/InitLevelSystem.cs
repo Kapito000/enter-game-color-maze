@@ -1,4 +1,4 @@
-﻿using Feature.Camera;
+﻿using Feature.CameraModule;
 using Feature.HeroSpawn;
 using UnityEngine;
 using Zenject;

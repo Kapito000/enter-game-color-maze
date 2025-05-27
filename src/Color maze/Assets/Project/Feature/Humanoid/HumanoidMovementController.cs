@@ -1,4 +1,5 @@
-﻿using Game.Input;
+﻿using Feature.MovementInput;
+using Game.Input;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
