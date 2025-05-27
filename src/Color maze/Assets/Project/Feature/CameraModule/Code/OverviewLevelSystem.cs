@@ -1,5 +1,6 @@
 ﻿using CapLib.Common;
 using Feature.CameraModuleInput;
+using Feature.MovementInput;
 using Sirenix.OdinInspector;
 using UniRx;
 using Unity.Cinemachine;
@@ -17,6 +18,7 @@ namespace Feature.CameraModule
 		[SerializeField] int _waitingPriority = 0;
 
 		[Inject] ICameraInput _cameraInput;
+		[Inject] IMovementInput _movementInput;
 		[Inject] ICameraProvider _cameraProvider;
 
 		[Inject]
@@ -43,12 +45,14 @@ namespace Feature.CameraModule
 					SetAsWaiting(_cameraProvider.MainVirtualCamera);
 					SetAsActive(_cameraProvider.LevelOverviewVirtualCamera);
 					virtualCameraMode = VirtualCameraMode.LevelOverview;
+					_movementInput.Disable();
 					break;
 
 				case VirtualCameraMode.LevelOverview:
 					SetAsWaiting(_cameraProvider.LevelOverviewVirtualCamera);
 					SetAsActive(_cameraProvider.MainVirtualCamera);
 					virtualCameraMode = VirtualCameraMode.Main;
+					_movementInput.Enable();
 					break;
 
 				default:
