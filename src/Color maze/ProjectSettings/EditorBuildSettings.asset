@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Boot.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Project/Scenes/Game play.unity
+    path: Assets/Project/Scenes/Sample.unity
     guid: bdd3a6b5da05a664594942b9859a3df8
   - enabled: 0
     path: Assets/Project/Scenes/Test.unity
