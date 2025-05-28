@@ -8,14 +8,15 @@ namespace Infrastructure.LevelsSequence
 {
 	public sealed class LevelSequenceService : ILevelSequenceService
 	{
-		[Inject] IGameProgress _gameProgress;
+		[Inject] ILevelProgressService _levelProgressService;
 		[Inject] ISceneLoadState _sceneLoadState;
 		[Inject] IGameStateMachine _gameStateMachine;
 		[Inject] ILevelsSequenceData _levelsSequenceData;
 
 		public void LoadNextLevel()
 		{
-			var nextLevel = _gameProgress.CurrentLevel + 1;
+			var currentLevel = _levelProgressService.CurrentLevel;
+			var nextLevel = currentLevel;
 			if (_levelsSequenceData.TryGetScene(nextLevel, out var scene) == false)
 			{
 				Debug.LogError($"Cannot to get the next level by num {nextLevel}.");

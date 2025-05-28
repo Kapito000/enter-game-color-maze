@@ -1,4 +1,4 @@
-﻿namespace Feature.EndLevel
+﻿namespace Feature.EndLevelProcess
 {
 	public interface IEndLevelActor
 	{ }

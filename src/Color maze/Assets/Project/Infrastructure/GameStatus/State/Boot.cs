@@ -1,6 +1,7 @@
 ﻿using CapLib.GameStatus;
 using Game.Input;
 using Infrastructure.Configuration;
+using Infrastructure.GameProgress;
 using UnityEngine;
 using Zenject;
 
@@ -11,10 +12,13 @@ namespace Infrastructure.GameStatus.State
 		[Inject] IGameConfig _gameConfig;
 		[Inject] IInputService _inputService;
 		[Inject] ISceneLoadState _sceneLoadState;
+		[Inject] ISaveLoadService _saveLoadService;
 		[Inject] IGameStateMachine _gameStateMachine;
 
 		public void Enter()
 		{
+			_saveLoadService.LoadProgress();
+			
 			if (TryLoadFirstScene() == false)
 			{
 				Debug.LogError("Failed to load first scene.");

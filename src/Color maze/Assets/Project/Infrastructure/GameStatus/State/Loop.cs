@@ -1,7 +1,6 @@
 ﻿using CapLib.GameStatus;
 using Feature.CameraModuleInput;
 using Feature.MovementInput;
-using Game.Input;
 using Zenject;
 
 namespace Infrastructure.GameStatus.State

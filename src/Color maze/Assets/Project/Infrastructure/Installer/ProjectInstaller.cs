@@ -22,12 +22,6 @@ namespace Infrastructure.Installer
 			BindCoroutineRunner();
 			BindGameSceneMachine();
 			BindGameConfiguration();
-			BindGameProgressService();
-		}
-
-		void BindGameProgressService()
-		{
-			Container.Bind<IGameProgress>().To<GameProgressService>().AsSingle();
 		}
 
 		void BindIdFactory()
@@ -57,9 +51,12 @@ namespace Infrastructure.Installer
 		void BindGameSceneMachine()
 		{
 			Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
+			
 			Container.Bind<IState>().To<Boot>().AsSingle();
 			Container.BindInterfacesTo<SceneLoad>().AsSingle();
+			Container.Bind<IState>().To<StartLevel>().AsSingle();
 			Container.Bind<IState>().To<Loop>().AsSingle();
+			Container.Bind<IState>().To<EndLevel>().AsSingle();
 			Container.Bind<IState>().To<Quit>().AsSingle();
 		}
 

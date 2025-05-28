@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Feature.EndLevel
+namespace Feature.EndLevelProcess
 {
 	public sealed class EndLevelActor : MonoBehaviour, IEndLevelActor
 	{ }
