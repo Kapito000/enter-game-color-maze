@@ -2,6 +2,7 @@
 using Feature.CameraModule;
 using Feature.EndLevelProcess;
 using Feature.HeroSpawn;
+using Feature.UI;
 using Infrastructure.GameStatus.State;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,7 @@ namespace Feature.InitLevel
 {
 	public class InitLevelSystem : MonoBehaviour
 	{
+		[Inject] IUiFactory _uiFactory;
 		[Inject] IHeroSpawnSystem _heroSpawnSystem;
 		[Inject] IEndLevelService _endLevelService;
 		[Inject] IGameStateMachine _gameStateMachine;
@@ -26,6 +28,8 @@ namespace Feature.InitLevel
 			}
 			
 			_spawnCameraSystem.Spawn(heroObj.transform);
+
+			_uiFactory.Create();
 
 			_gameStateMachine.TryEnter<Loop>();
 		}
