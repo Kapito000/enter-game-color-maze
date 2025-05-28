@@ -16,7 +16,13 @@ namespace Infrastructure.LevelsSequence
 		public void LoadNextLevel()
 		{
 			var currentLevel = _levelProgressService.CurrentLevel;
+			var sceneCount = _levelsSequenceData.SceneCount;
+
+			if (currentLevel >= sceneCount)
+				currentLevel = _levelProgressService.CurrentLevel = 0;
+
 			var nextLevel = currentLevel;
+
 			if (_levelsSequenceData.TryGetScene(nextLevel, out var scene) == false)
 			{
 				Debug.LogError($"Cannot to get the next level by num {nextLevel}.");

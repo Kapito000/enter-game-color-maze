@@ -10,9 +10,12 @@ namespace Infrastructure.LevelsSequence
 	{
 		[SerializeField] SceneReference[] _scenes;
 
+		public int SceneCount => _scenes.Length;
+
 		public bool TryGetScene(int index, out SceneReference scene)
 		{
 			Assert.IsFalse(index < 0);
+			Assert.IsFalse(index >= _scenes.Length);
 
 			if (index < 0 || index >= _scenes.Length)
 			{
