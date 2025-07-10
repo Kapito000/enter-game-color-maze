@@ -8,9 +8,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 168810736924949879, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 168810736924949879, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 168810736924949879, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 246639929289129971, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
       propertyPath: m_Name
       value: B wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158590739589344862, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158590739589344862, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158590739589344862, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2438858171360518769, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60,6 +84,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e7e98fd8ce19a4744952e2e59e634fb3, type: 2}
+    - target: {fileID: 8685648905238925312, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685648905238925312, guid: 7e68f37e537dcb8448683eb2b3a4dfeb, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
