@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Level Sequence Data
   m_EditorClassIdentifier: 
   _scenes:
-  - asset: {fileID: 102900000, guid: 8625c4cd656e5384f84c615a74c349ea, type: 3}
-    guid: 8625c4cd656e5384f84c615a74c349ea
-  - asset: {fileID: 102900000, guid: bdd3a6b5da05a664594942b9859a3df8, type: 3}
-    guid: bdd3a6b5da05a664594942b9859a3df8
+  - asset: {fileID: 102900000, guid: a91f1d135d6676e4d9affceecaa5aa13, type: 3}
+    guid: a91f1d135d6676e4d9affceecaa5aa13
+  - asset: {fileID: 102900000, guid: 503956e5e6c1205479596ce2fba82693, type: 3}
+    guid: 503956e5e6c1205479596ce2fba82693
+  - asset: {fileID: 102900000, guid: 237f30545479ca046a3f46d49a00935a, type: 3}
+    guid: 237f30545479ca046a3f46d49a00935a
