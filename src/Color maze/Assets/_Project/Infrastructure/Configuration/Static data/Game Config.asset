@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b317fdda19243c294600bd4542fc7aa, type: 3}
   m_Name: Game Config
   m_EditorClassIdentifier: 
-  _firstSceneName: Game play
+  _firstSceneName: lvl 1
