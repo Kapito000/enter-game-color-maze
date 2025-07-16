@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 827885f9c6f8d734c894e9ee1ed7b6e7, type: 3}
+    - target: {fileID: 4015025520311088586, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7333435277261603390, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -59,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 8861721416311730515, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
       propertyPath: m_Name
       value: Wall 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080293968526627335, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

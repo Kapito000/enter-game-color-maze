@@ -17,6 +17,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4300002, guid: 85215ddb67dce05478420137b344281d, type: 3}
     - target: {fileID: 4015025520311088586, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015025520311088586, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -67,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 8861721416311730515, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
       propertyPath: m_Name
       value: Wall 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080293968526627335, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9080293968526627335, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
       propertyPath: m_Materials.Array.size
