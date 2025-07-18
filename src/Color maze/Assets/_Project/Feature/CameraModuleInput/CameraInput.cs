@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Feature.CameraModuleInput
 {
-	public sealed class CameraInput : ICameraInput
+	public sealed class CameraInput : ICameraInput, IDisposable
 	{
 		CompositeDisposable _disposables = new();
 

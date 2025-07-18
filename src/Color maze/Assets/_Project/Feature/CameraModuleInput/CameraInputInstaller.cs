@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using System;
+using Zenject;
 
 namespace Feature.CameraModuleInput
 {
@@ -12,7 +13,7 @@ namespace Feature.CameraModuleInput
 		void BindOverviewLevelInput()
 		{
 			Container
-				.Bind<ICameraInput>()
+				.Bind(typeof(ICameraInput), typeof(IDisposable))
 				.To<CameraInput>()
 				.AsSingle();
 		}
