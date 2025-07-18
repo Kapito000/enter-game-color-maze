@@ -3,7 +3,6 @@ using CapLib.GameStatus;
 using CapLib.Id;
 using CapLib.SceneLoad;
 using Infrastructure.Configuration;
-using Infrastructure.GameProgress;
 using Infrastructure.GameStatus.State;
 using UnityEngine;
 using UnityEngine.Assertions;
