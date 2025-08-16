@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8861721416311730515, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9080293968526627335, guid: 545ebb4048d10f04b9f7864b3dcc0b52, type: 3}
       propertyPath: m_CastShadows
       value: 1
