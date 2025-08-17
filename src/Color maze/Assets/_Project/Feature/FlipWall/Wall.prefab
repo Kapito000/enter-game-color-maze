@@ -623,9 +623,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3044925873062541813}
     m_Modifications:
+    - target: {fileID: 4778247796469305557, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6926713137996387392, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
       propertyPath: m_Name
       value: Door effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -666,6 +682,10 @@ PrefabInstance:
     - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -809,9 +829,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3044925873062541813}
     m_Modifications:
+    - target: {fileID: 4778247796469305557, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6926713137996387392, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
       propertyPath: m_Name
       value: Door effect (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 6926713137996387397, guid: fb98528cccf3e6b41af4b97e959d2e9b, type: 3}
       propertyPath: m_LocalPosition.x

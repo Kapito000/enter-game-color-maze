@@ -13,8 +13,8 @@ namespace Feature.CameraModule.Factory
 		public CinemachineCamera CreateVirtualCamera(Transform target)
 		{
 			var cmCamera = SpawnCinemachineCamera();
-			cmCamera.Follow = target;
-			cmCamera.LookAt = target;
+			// cmCamera.Follow = target;
+			// cmCamera.LookAt = target;
 			return cmCamera;
 		}
 
