@@ -256,6 +256,15 @@ namespace Game.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quite"",
+                    ""type"": ""Button"",
+                    ""id"": ""0babfb76-ee85-40b0-be65-be972202b444"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -267,6 +276,17 @@ namespace Game.Input
                     ""processors"": """",
                     ""groups"": "";PC"",
                     ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de4ab403-9c1c-4604-8619-4e41b2cd5397"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";PC"",
+                    ""action"": ""Quite"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -296,6 +316,7 @@ namespace Game.Input
             // Services
             m_Services = asset.FindActionMap("Services", throwIfNotFound: true);
             m_Services_Restart = m_Services.FindAction("Restart", throwIfNotFound: true);
+            m_Services_Quite = m_Services.FindAction("Quite", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -571,6 +592,7 @@ namespace Game.Input
         private readonly InputActionMap m_Services;
         private List<IServicesActions> m_ServicesActionsCallbackInterfaces = new List<IServicesActions>();
         private readonly InputAction m_Services_Restart;
+        private readonly InputAction m_Services_Quite;
         /// <summary>
         /// Provides access to input actions defined in input action map "Services".
         /// </summary>
@@ -586,6 +608,10 @@ namespace Game.Input
             /// Provides access to the underlying input action "Services/Restart".
             /// </summary>
             public InputAction @Restart => m_Wrapper.m_Services_Restart;
+            /// <summary>
+            /// Provides access to the underlying input action "Services/Quite".
+            /// </summary>
+            public InputAction @Quite => m_Wrapper.m_Services_Quite;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -615,6 +641,9 @@ namespace Game.Input
                 @Restart.started += instance.OnRestart;
                 @Restart.performed += instance.OnRestart;
                 @Restart.canceled += instance.OnRestart;
+                @Quite.started += instance.OnQuite;
+                @Quite.performed += instance.OnQuite;
+                @Quite.canceled += instance.OnQuite;
             }
 
             /// <summary>
@@ -629,6 +658,9 @@ namespace Game.Input
                 @Restart.started -= instance.OnRestart;
                 @Restart.performed -= instance.OnRestart;
                 @Restart.canceled -= instance.OnRestart;
+                @Quite.started -= instance.OnQuite;
+                @Quite.performed -= instance.OnQuite;
+                @Quite.canceled -= instance.OnQuite;
             }
 
             /// <summary>
@@ -719,6 +751,13 @@ namespace Game.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnRestart(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Quite" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnQuite(InputAction.CallbackContext context);
         }
     }
 }

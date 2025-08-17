@@ -1,8 +1,8 @@
 ﻿using CapLib.GameStatus;
 using Game.Input;
 using Infrastructure.Configuration;
-using Infrastructure.GameProgress;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Infrastructure.GameStatus.State
@@ -12,13 +12,10 @@ namespace Infrastructure.GameStatus.State
 		[Inject] IGameConfig _gameConfig;
 		[Inject] IInputService _inputService;
 		[Inject] ISceneLoadState _sceneLoadState;
-		[Inject] ISaveLoadService _saveLoadService;
 		[Inject] IGameStateMachine _gameStateMachine;
 
 		public void Enter()
 		{
-			_saveLoadService.LoadProgress();
-			
 			if (TryLoadFirstScene() == false)
 			{
 				Debug.LogError("Failed to load first scene.");
@@ -59,7 +56,9 @@ namespace Infrastructure.GameStatus.State
 			var previousScene = CapLib.SceneBootstrapper.SceneBootstrapper
 				.PreviousScene;
 
-			if (shouldLoadBootstrapScene && !string.IsNullOrEmpty(previousScene))
+			if (shouldLoadBootstrapScene &&
+			    !string.IsNullOrEmpty(previousScene) &&
+			    previousScene != SceneManager.GetActiveScene().path)
 				return previousScene;
 #endif
 

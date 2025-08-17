@@ -10,8 +10,10 @@ namespace Feature.ServicesInput
 		readonly InputActions _actions;
 		readonly CompositeDisposable _disposables = new();
 
-		private readonly Subject<Unit> _restartPerformed = new();
+		readonly Subject<Unit> _quitePerformed = new();
+		readonly Subject<Unit> _restartPerformed = new();
 
+		public IObservable<Unit> QuitePerformed => _quitePerformed;
 		public IObservable<Unit> RestartPerformed => _restartPerformed;
 
 		public ServicesInput(InputActions actions)
@@ -22,6 +24,12 @@ namespace Feature.ServicesInput
 					h => _actions.Services.Restart.performed += h,
 					h => _actions.Services.Restart.performed -= h)
 				.Subscribe(_ => _restartPerformed.OnNext(Unit.Default))
+				.AddTo(_disposables);
+
+			Observable.FromEvent<InputAction.CallbackContext>(
+					h => _actions.Services.Quite.performed += h,
+					h => _actions.Services.Restart.performed -= h)
+				.Subscribe(_ => _quitePerformed.OnNext(Unit.Default))
 				.AddTo(_disposables);
 		}
 
