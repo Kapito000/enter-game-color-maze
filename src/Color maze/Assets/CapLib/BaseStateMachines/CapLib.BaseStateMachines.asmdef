@@ -1,0 +1,18 @@
+{
+    "name": "CapLib.BaseStateMachines",
+    "rootNamespace": "CapLib.BaseStateMachines",
+    "references": [
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:7a2f0fcedbb12244d9ec8f8bff1c8431",
+        "GUID:9e2ac20b3dd89ce4d8258e40e42bb7c6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

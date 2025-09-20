@@ -1,0 +1,19 @@
+{
+    "name": "CapLib.ZenjectEditor",
+    "rootNamespace": "CapLib.ZenjectEditor",
+    "references": [
+        "GUID:4af82cf9745e9fa4e802080fe6643d9a",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
