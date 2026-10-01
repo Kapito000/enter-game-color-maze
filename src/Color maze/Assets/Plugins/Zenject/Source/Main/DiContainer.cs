@@ -838,7 +838,7 @@ namespace Zenject
             }
 
 #if UNITY_EDITOR
-            if (context.MemberType.DerivesFromOrEqual<Context>())
+            if (context.MemberType.DerivesFrom<Context>())
             {
                 // This happens when getting default transform parent so ok
                 return;
@@ -1019,7 +1019,7 @@ namespace Zenject
                     if (memberType.IsGenericType()
                         && (memberType.GetGenericTypeDefinition() == typeof(List<>)
                             || memberType.GetGenericTypeDefinition() == typeof(IList<>)
-#if NET_4_6 || NET_STANDARD_2_0
+#if NET_4_6
                             || memberType.GetGenericTypeDefinition() == typeof(IReadOnlyList<>)
 #endif
                             || memberType.GetGenericTypeDefinition() == typeof(IEnumerable<>)))

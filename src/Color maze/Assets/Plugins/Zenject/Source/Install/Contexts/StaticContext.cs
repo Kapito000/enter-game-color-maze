@@ -11,10 +11,7 @@ namespace Zenject
     {
         static DiContainer _container;
 
-#if UNITY_EDITOR
-        // Required for disabling domain reload in enter the play mode feature. See: https://docs.unity3d.com/Manual/DomainReloading.html
-        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
-#endif
+        // Useful sometimes to call from play mode tests
         public static void Clear()
         {
             _container = null;

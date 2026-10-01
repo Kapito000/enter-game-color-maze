@@ -60,11 +60,6 @@ namespace Zenject
 #if !NOT_UNITY3D
         [SerializeField]
 #endif
-        ConstructorChoiceStrategy _constructorChoiceStrategy;
-
-#if !NOT_UNITY3D
-        [SerializeField]
-#endif
         SignalSettings _signalSettings;
 
         public ZenjectSettings(
@@ -72,15 +67,13 @@ namespace Zenject
             RootResolveMethods validationRootResolveMethod = RootResolveMethods.NonLazyOnly,
             bool displayWarningWhenResolvingDuringInstall = true,
             bool ensureDeterministicDestructionOrderOnApplicationQuit = false,
-            SignalSettings signalSettings = null,
-            ConstructorChoiceStrategy constructorChoiceStrategy = ConstructorChoiceStrategy.InjectAttributeThenLeastArguments)
+            SignalSettings signalSettings = null)
         {
             _validationErrorResponse = validationErrorResponse;
             _validationRootResolveMethod = validationRootResolveMethod;
             _displayWarningWhenResolvingDuringInstall = displayWarningWhenResolvingDuringInstall;
             _ensureDeterministicDestructionOrderOnApplicationQuit =ensureDeterministicDestructionOrderOnApplicationQuit;
             _signalSettings = signalSettings ?? SignalSettings.Default;
-            _constructorChoiceStrategy = constructorChoiceStrategy;
         }
 
         // Need to define an emtpy constructor since this is created by unity serialization
@@ -88,11 +81,6 @@ namespace Zenject
         public ZenjectSettings()
             : this(ValidationErrorResponses.Log)
         {
-        }
-
-        public ConstructorChoiceStrategy ConstructorChoiceStrategy
-        {
-            get { return _constructorChoiceStrategy; }
         }
 
         public SignalSettings Signals
