@@ -3,18 +3,21 @@ using Feature.CameraModule.Factory;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Zenject;
+using Unity.Cinemachine;
 
 namespace Feature.CameraModule
 {
 	public sealed class CameraModuleInstaller : MonoInstaller
 	{
 		[SerializeField] CameraAssetProvider _cameraAssetProvider;
+		[SerializeField] CinemachineCamera _levelCamera;
 
 		public override void InstallBindings()
 		{
 			BindCameraFactory();
 			BindCameraProvider();
 			BindSpawnCameraSystem();
+			BindLevelCameraProvider();
 			BindCameraAssetProvider();
 		}
 
@@ -45,5 +48,11 @@ namespace Feature.CameraModule
 		{
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 		}
+
+		private void BindLevelCameraProvider()
+		{
+			Container.Bind<ILevelCameraProvider>().FromInstance(new LevelCameraProvider(_levelCamera)).AsSingle();
+		}
 	}
 }
+

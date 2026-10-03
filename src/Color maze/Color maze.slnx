@@ -1,0 +1,21 @@
+﻿<Solution>
+  <Project Path="Zenject.csproj" />
+  <Project Path="UniRx.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Zenject-Editor.csproj" />
+  <Project Path="CapLib.BaseStateMachines.csproj" />
+  <Project Path="GameStatus.csproj" />
+  <Project Path="StateMachine.csproj" />
+  <Project Path="CapLib.Id.csproj" />
+  <Project Path="SceneLoad.csproj" />
+  <Project Path="UniRx.Examples.csproj" />
+  <Project Path="CapLib.Common.csproj" />
+  <Project Path="Game.Input.csproj" />
+  <Project Path="CapLib.AudioMixerUtility.csproj" />
+  <Project Path="CapLib.Collection.csproj" />
+  <Project Path="CapLib.ZenjectEditor.csproj" />
+  <Project Path="CapLib.SceneBootstrapper.csproj" />
+  <Project Path="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
+  <Project Path="CapLib.ZenjectExtension.csproj" />
+  <Project Path="CapLib.Extensions.csproj" />
+</Solution>

@@ -12,10 +12,8 @@ namespace Feature.CameraModule
 		public void Spawn(Transform hero)
 		{
 			var camera = _cameraFactory.CreateCamera();
-			var virtualCamera = _cameraFactory.CreateVirtualCamera(hero);
 
 			_cameraProvider.Camera = camera;
-			_cameraProvider.MainVirtualCamera = virtualCamera;
 		}
 	}
 }

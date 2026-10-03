@@ -16,6 +16,7 @@ namespace Feature.InitLevel
 		[Inject] IEndLevelService _endLevelService;
 		[Inject] IGameStateMachine _gameStateMachine;
 		[Inject] ISpawnCameraSystem  _spawnCameraSystem;
+		[Inject] ILevelCameraProvider _levelCameraProvider;
 		
 		void Start()
 		{
@@ -28,10 +29,17 @@ namespace Feature.InitLevel
 			}
 			
 			_spawnCameraSystem.Spawn(heroObj.transform);
+			InitLevelCamera(heroObj.transform);
 
 			_uiFactory.Create();
 
 			_gameStateMachine.TryEnter<Loop>();
+		}
+
+		void InitLevelCamera(Transform heroObj)
+		{
+			_levelCameraProvider.LevelCamera.Follow = heroObj.transform;
+			_levelCameraProvider.LevelCamera.LookAt = heroObj.transform;
 		}
 	}
 }
